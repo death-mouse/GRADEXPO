@@ -1,0 +1,43 @@
+﻿@using GRADEXPO.Models;
+@model List<Users>
+
+@{
+    ViewBag.Title = "Работа с пользователями";
+}
+
+@Html.ActionLink("Создать пользователя", "AddUsers", null, new { @class = "btn btn-primary btn-lg" })
+<br />
+<br />
+<br />
+<h3>Список пользователей</h3>
+<div class="table-responsive">
+    <table class="table table-hover table-bordered">
+        <thead>
+            <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Имя</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr class="table-active">
+                    <td scope="row">@Html.DisplayFor(modelItem => item.userId)</td>
+                    <td>@Html.DisplayFor(modelItem => item.userName)</td>
+                    <td>
+                        <div class="form-actions no-color">
+                            @Html.HiddenFor(id => item.userId)
+                            @Html.ActionLink("Изменить", "EditUser", new { id = item.userId })
+
+                            @Html.ActionLink("Информация", "DetailsOfUser", new { id = item.userId })
+
+                            @Html.ActionLink("Удалить", "DeleteUser", new { id = item.userId })
+                        </div>
+                    </td>
+                </tr>
+            }
+    </table>
+</div>
+
+

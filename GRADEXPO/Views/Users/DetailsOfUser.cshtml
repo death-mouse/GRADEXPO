@@ -1,0 +1,29 @@
+﻿@using GRADEXPO.ViewModels
+@model UsersViewModel
+@{
+    ViewBag.Title = "Информация о пользователе";
+}
+
+<h2>Информация о пользователе</h2>
+
+<br />
+<div class="form-group">
+    @Html.LabelFor(m => m.role, new { @class = "col-md-2 control-label" })
+    <div class="col-md-10">
+        @Model.role
+    </div>
+</div>
+<div class="form-group">
+    @Html.LabelFor(m => m.login, new { @class = "col-md-2 control-label" })
+    <div class="col-md-10">
+        @Model.login
+    </div>
+</div>
+<div class="form-group">
+    @Html.LabelFor(m => m.userName, new { @class = "col-md-2 control-label" })
+    <div class="col-md-10">
+        @Model.userName
+    </div>
+</div>
+<br />
+

@@ -1,0 +1,29 @@
+﻿@using GRADEXPO.ViewModels
+@model ExposViewModel
+@{
+    ViewBag.Title = "Информация о пользователе";
+}
+
+<h2>Информация о выставке</h2>
+
+<br />
+<div class="form-group">
+    @Html.LabelFor(m => m.ExpoName, new { @class = "col-md-2 control-label" })
+    <div class="col-md-10">
+        @Model.ExpoName
+    </div>
+</div>
+<div class="form-group">
+    @Html.LabelFor(m => m.DateStart, new { @class = "col-md-2 control-label" })
+    <div class="col-md-10">
+        @Model.DateStart
+    </div>
+</div>
+<div class="form-group">
+    @Html.LabelFor(m => m.DateEnd, new { @class = "col-md-2 control-label" })
+    <div class="col-md-10">
+        @Model.DateEnd
+    </div>
+</div>
+<br />
+

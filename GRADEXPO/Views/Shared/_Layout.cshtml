@@ -1,0 +1,55 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-primary">
+        <div class="container">
+            <a href="../" class="navbar-brand">GRADEXPO</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" id="themes">Администрирование <span class="caret"></span></a>
+                        <div class="dropdown-menu" aria-labelledby="themes">
+                            @Html.ActionLink("Пользователи", "../Users", null, new { @class = "dropdown-item" })
+                            <div class="dropdown-divider"></div>
+                            @Html.ActionLink("Выставки", "../Expos", null, new { @class = "dropdown-item" })
+                            <a class="dropdown-item" href="#">Поставщики</a>
+                            <a class="dropdown-item" href="#">Стенды выставок</a>
+                            <a class="dropdown-item" href="#">Визиты пользователей</a>
+                            <a class="dropdown-item" href="#">Список проектов и продуктов</a>
+                            <a class="dropdown-item" href="#">Встречи пользователей</a>
+                        </div>
+                    </li>
+                </ul>
+
+
+            </div>
+        </div>
+    </nav>
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+
+    </div>
+    <div class="container body-content" style="clear: left;float: right;">
+        <footer>
+            <p>&copy; @DateTime.Now.Year - GRADEXPO by Дмитрий Астахов</p>
+        </footer>
+    </div>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/Scripts/custom.js")
+    @Scripts.Render("~/Scripts/bootstrap.min.js")
+    @RenderSection("scripts", required: false)
+</body>
+</html>
