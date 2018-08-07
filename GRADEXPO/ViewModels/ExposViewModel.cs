@@ -17,6 +17,7 @@ namespace GRADEXPO.ViewModels
 
         [Display(Name = "Дата начала выставки")]
         [DataType(DataType.Date)]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd.MM.yyyy}")]
         public DateTime DateStart { get; set; }
 
         [Display(Name = "Дата окончания выставки")]
