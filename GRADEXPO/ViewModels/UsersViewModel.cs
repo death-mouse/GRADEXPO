@@ -6,7 +6,6 @@ namespace GRADEXPO.ViewModels
 {
     public class UsersViewModel
     {
-        //Test visual studio 2017
         public string Title { get; set; }
         public string AddButtonTitle { get; set; }
         public string RedirectUrl { get; set; }
