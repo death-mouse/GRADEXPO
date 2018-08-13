@@ -1,8 +1,12 @@
 ﻿using System;
+using System.DirectoryServices;
 using System.DirectoryServices.AccountManagement;
 using System.Security.Claims;
 using Microsoft.Owin.Security;
-using GRADEXPO;
+
+using System.Drawing.Imaging;
+using System.Drawing;
+using System.IO;
 
 namespace GRADEXPO.Models
 {
@@ -33,7 +37,7 @@ namespace GRADEXPO.Models
         /// <param name="username"></param>
         /// <param name="password"></param>
         /// <returns></returns>
-        public AuthenticationResult SignIn(String username, String password)
+        public AuthenticationResult SignIn(String username, String password, string serverPath)
         {
 #if DEBUG
             // authenticates against your local machine - for development time
@@ -51,6 +55,16 @@ namespace GRADEXPO.Models
                 if (userPrincipal != null)
                 {
                     isAuthenticated = principalContext.ValidateCredentials(username, password, ContextOptions.Negotiate);
+                    DirectoryEntry directoryEntry = (DirectoryEntry)userPrincipal.GetUnderlyingObject();
+                    PropertyValueCollection collection = directoryEntry.Properties["thumbnailPhoto"];
+                    if (collection.Value != null && collection.Value is byte[])
+                    {
+                        byte[] thumbnailInBytes = (byte[])collection.Value;
+                        Bitmap thumbnail = new Bitmap(new MemoryStream(thumbnailInBytes));
+
+                        String saveImagePath = string.Format("{0}/{1}.jpg", serverPath, username);
+                        thumbnail.Save(saveImagePath, ImageFormat.Jpeg);
+                    }
                 }
             }
             catch (Exception e)
@@ -100,7 +114,7 @@ namespace GRADEXPO.Models
             }
 
             // add your own claims if you need to add more information stored on the cookie
-
+            identity.Label = userPrincipal.SamAccountName;
             return identity;
         }
     }

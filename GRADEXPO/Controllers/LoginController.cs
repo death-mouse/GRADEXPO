@@ -33,11 +33,10 @@ namespace GRADEXPO.Controllers
             IAuthenticationManager authenticationManager = HttpContext.GetOwinContext().Authentication;
             var authService = new AdAuthenticationService(authenticationManager);
 
-            var authenticationResult = authService.SignIn(model.Username, model.Password);
+            var authenticationResult = authService.SignIn(model.Username, model.Password, Server.MapPath("~/UserPhoto"));
 
             if (authenticationResult.IsSuccess)
             {
-                // we are in!
                 return RedirectToAction("Index", "Home");
             }
 
