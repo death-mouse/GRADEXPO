@@ -8,9 +8,15 @@ namespace GRADEXPO.Models
     public class Expos
     {
         [Key]
-        public int Id { get; set; }
-        public string ExpoName { get; set; }
-        public DateTime StartDate { get; set; }
-        public DateTime EndDate { get; set; }
+        [Display(Name = "Ид Выставки")]
+        public int expoId { get; set; }
+        [Display(Name = "Название выставки")]
+        public string expoName { get; set; }
+        [Display(Name = "Начало выставки")]
+        public DateTime startDate { get; set; }
+        [Display(Name = "Окончание выставки")]
+        public DateTime endDate { get; set; }
+        [Display(Name = "Описание выставки")]
+        public string description { get; set; }
     }
 }

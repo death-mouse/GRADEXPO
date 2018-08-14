@@ -4,6 +4,8 @@ using GRADEXPO.Services;
 using GRADEXPO.ViewModels;
 using GRADEXPO.Models;
 using System;
+using System.Configuration;
+using System.Collections.Generic;
 
 namespace GRADEXPO.Controllers
 {
@@ -15,10 +17,23 @@ namespace GRADEXPO.Controllers
         {
             expoService = _expoService;
         }
+
+
         // GET: Expo
         public async Task<ActionResult> Index()
         {
-            var expos = await expoService.GetExposAsync();
+            IEnumerable<Expos> expos = null;
+            switch (Properties.Settings.Default.GetDataFrom)
+            {
+                case "db":
+                    expos = await expoService.GetExposAsync();
+                    break;
+                case "Json":
+                    expos = await expoService.GetExposFromJsonAsync();
+                    break;
+
+            }
+
 
             return View(expos);
         }
@@ -35,11 +50,27 @@ namespace GRADEXPO.Controllers
             return View(exposViewModel);
         }
 
+        [HandleError]
         public async Task<ActionResult> DetailsOfExpo(int Id)
         {
-            var expo = await expoService.GetExpoAsync(Id);
-
-            return View(new ExposViewModel { Id = expo.Id, DateStart = expo.StartDate, DateEnd = expo.EndDate, ExpoName = expo.ExpoName });
+            //try
+            {
+                Expos expo = null;
+                switch (Properties.Settings.Default.GetDataFrom)
+                {
+                    case "db":
+                        expo = await expoService.GetExpoAsync(Id);
+                        break;
+                    case "Json":
+                        expo = await expoService.GetExpoFromJsonAsync(Id);
+                        break;
+                }
+                return View(new ExposViewModel { Id = expo.expoId, DateStart = expo.startDate, DateEnd = expo.endDate, ExpoName = expo.expoName, Description = expo.description });
+            }
+            /*catch(Exception ex)
+            {
+                return View("Error", new HandleErrorInfo(ex, "Expos", "DetailsOfExpo"));
+            }*/
         }
 
         [HttpPost]
@@ -53,9 +84,9 @@ namespace GRADEXPO.Controllers
             var expo = await expoService.GetExpoAsync(_expoViewModel.Id);
             if (expo != null)
             {
-                expo.ExpoName = _expoViewModel.ExpoName;
-                expo.StartDate = _expoViewModel.DateStart;
-                expo.EndDate = _expoViewModel.DateEnd;
+                expo.expoName = _expoViewModel.ExpoName;
+                expo.startDate = _expoViewModel.DateStart;
+                expo.endDate = _expoViewModel.DateEnd;
                 await expoService.UpdateExpoAsync(expo);
             }
 
@@ -69,9 +100,9 @@ namespace GRADEXPO.Controllers
                 Title = "Изменение выставки",
                 AddButtonTitle = "Сохранить",
                 RedirectUrl = Url.Action("Index", "Expos"),
-                ExpoName = expo.ExpoName,
-                DateStart = expo.StartDate,
-                DateEnd = expo.EndDate
+                ExpoName = expo.expoName,
+                DateStart = expo.startDate,
+                DateEnd = expo.endDate
             };
 
             return View(exposViewModel);
@@ -94,9 +125,9 @@ namespace GRADEXPO.Controllers
 
             var expo = new Expos
             {
-                ExpoName = _exposViewModel.ExpoName,
-                StartDate = _exposViewModel.DateStart,
-                EndDate = _exposViewModel.DateEnd
+                expoName = _exposViewModel.ExpoName,
+                startDate = _exposViewModel.DateStart,
+                endDate = _exposViewModel.DateEnd
             };
 
             await expoService.AddExpoAsync(expo);

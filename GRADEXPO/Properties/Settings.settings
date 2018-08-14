@@ -1,0 +1,15 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="GRADEXPO.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="GetDataFrom" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Json</Value>
+    </Setting>
+    <Setting Name="BaseUrlApi" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">http://zskpk02:8280/gradexpo/api/</Value>
+    </Setting>
+    <Setting Name="postfixGetExpo" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">expo</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

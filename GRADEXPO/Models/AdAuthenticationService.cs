@@ -7,6 +7,7 @@ using Microsoft.Owin.Security;
 using System.Drawing.Imaging;
 using System.Drawing;
 using System.IO;
+using System.Security.Cryptography;
 
 namespace GRADEXPO.Models
 {
@@ -46,7 +47,11 @@ namespace GRADEXPO.Models
             // authenticates against your Domain AD
             ContextType authenticationType = ContextType.Domain;
 #endif
-            PrincipalContext principalContext = new PrincipalContext(authenticationType,@"gradient.ru", "DC=gradient,DC=ru", username, password);
+            if (username.Contains("\\"))
+            {
+                username = username.Split(new char[] { '\\' })[1];
+            }
+            PrincipalContext principalContext = new PrincipalContext(authenticationType, @"gradient.ru", "DC=gradient,DC=ru", username, password);
             bool isAuthenticated = false;
             UserPrincipal userPrincipal = null;
             try
@@ -61,8 +66,12 @@ namespace GRADEXPO.Models
                     {
                         byte[] thumbnailInBytes = (byte[])collection.Value;
                         Bitmap thumbnail = new Bitmap(new MemoryStream(thumbnailInBytes));
-
-                        String saveImagePath = string.Format("{0}/{1}.jpg", serverPath, username);
+                        string fileName = username; ;
+                        if (username.Contains("\\"))
+                        {
+                            fileName = username.Split(new char[] { '\\' })[1];
+                        }
+                        String saveImagePath = string.Format("{0}/{1}.jpg", serverPath, fileName);
                         thumbnail.Save(saveImagePath, ImageFormat.Jpeg);
                     }
                 }
@@ -82,14 +91,14 @@ namespace GRADEXPO.Models
             {
                 // here can be a security related discussion weather it is worth 
                 // revealing this information
-                return new AuthenticationResult("Your account is locked.");
+                return new AuthenticationResult("Ваша учетная запись заблокирована.");
             }
 
             if (userPrincipal.Enabled.HasValue && userPrincipal.Enabled.Value == false)
             {
                 // here can be a security related discussion weather it is worth 
                 // revealing this information
-                return new AuthenticationResult("Your account is disabled");
+                return new AuthenticationResult("Ваша учетная запись отключена");
             }
 
             var identity = CreateIdentity(userPrincipal);
@@ -100,7 +109,7 @@ namespace GRADEXPO.Models
 
             return new AuthenticationResult();
         }
-
+        
 
         private ClaimsIdentity CreateIdentity(UserPrincipal userPrincipal)
         {

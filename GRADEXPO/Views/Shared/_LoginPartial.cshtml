@@ -12,7 +12,7 @@
                 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
                     @if (File.Exists(string.Format("{0}/{1}.jpg", Server.MapPath("~/UserPhoto"), ((ClaimsIdentity)User.Identity).FindFirst(ClaimTypes.NameIdentifier).Value)))
                 {
-                    <img src="@string.Format("../UserPhoto/{0}.jpg",((ClaimsIdentity)User.Identity).FindFirst(ClaimTypes.NameIdentifier).Value )" class="round" runat="server"/>
+                    <img src="@string.Format("{0}://{1}/UserPhoto/{2}.jpg",Request.Url.Scheme, Request.Url.Authority,((ClaimsIdentity)User.Identity).FindFirst(ClaimTypes.NameIdentifier).Value )" class="round" runat="server"/>
                 }
                     @User.Identity.Name
                     <span class="caret"></span>

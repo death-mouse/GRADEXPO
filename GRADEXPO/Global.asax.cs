@@ -17,5 +17,10 @@ namespace GRADEXPO
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
         }
+       /* protected void Application_Error(Object sender, EventArgs e)
+        {
+            HttpContext httpContext = HttpContext.Current;
+            httpContext.Response.Redirect("~/Error/Index");
+        }*/
     }
 }

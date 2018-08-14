@@ -24,7 +24,11 @@ namespace GRADEXPO.ViewModels
         [DataType(DataType.Date)]
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd.MM.yyyy}")]
         public DateTime DateEnd { get; set; }
-        
+
+        [Display(Name = "Описание выставки")]
+        [DataType(DataType.Text)]
+        public string Description { get; set; }
+
 
     }
 }

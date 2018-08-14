@@ -13,14 +13,14 @@ namespace GRADEXPO.Controllers
     public class LoginController : Controller
     {
         // GET: Login
-        [AllowAnonymous]
+       [HttpGet]
+       [AllowAnonymous]
         public ActionResult Index()
         {
             return View();
         }
 
         [HttpPost]
-        [AllowAnonymous]
         [ValidateAntiForgeryToken]
         public virtual ActionResult Index(GRADEXPO.ViewModels.LoginViewModel model)
         {

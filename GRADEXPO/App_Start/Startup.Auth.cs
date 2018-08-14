@@ -23,8 +23,15 @@ namespace GRADEXPO
             app.UseCookieAuthentication(new CookieAuthenticationOptions
             {
                 AuthenticationType = MyAuthentication.ApplicationCookie,
-                LoginPath = new PathString("/Login"),
-                Provider = new CookieAuthenticationProvider(),
+                LoginPath = new PathString("/Login/Index"),
+                Provider = new CookieAuthenticationProvider()
+                {
+                    // Enables the application to validate the security stamp when the user logs in.
+                    // This is a security feature which is used when you change a password or add an external login to your account.  
+                    OnValidateIdentity = SecurityStampValidator.OnValidateIdentity<ApplicationUserManager, ApplicationUser>(
+                        validateInterval: TimeSpan.FromMinutes(30),
+                        regenerateIdentity: (manager, user) => user.GenerateUserIdentityAsync(manager))
+                },
                 CookieName = "MyCookieName",
                 CookieHttpOnly = true,
                 ExpireTimeSpan = TimeSpan.FromDays(30), // adjust to your needs

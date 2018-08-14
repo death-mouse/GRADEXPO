@@ -11,5 +11,10 @@ namespace GRADEXPO.Repository
         Task<IEnumerable<Expos>> GetExposAsync();
         Task DeleteExpoAsync(int _id);
         Task<Expos> UpdateExpoAsync(Expos _expo);
+        Task<Expos> GetExpoFromJsonAsync(int _Id);
+        Task<ExposFromJson> AddExpoFromJsonAsync(ExposFromJson _expo);
+        Task<IEnumerable<Expos>> GetExposFromJsonAsync();
+        Task DeleteExpoFromJsonAsync(int _id);
+        Task<ExposFromJson> UpdateExpoFromJsonAsync(ExposFromJson _expo);
     }
 }
