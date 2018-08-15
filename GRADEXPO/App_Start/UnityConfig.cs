@@ -54,6 +54,7 @@ namespace GRADEXPO
             container.RegisterType<IUsersService, UsersService>();
             container.RegisterType<IExposRepository, ExposRepository>();
             container.RegisterType<IExposService, ExposService>();
+            container.RegisterType<IStandsService, StandsService>();
             //container.RegisterType<AccountController>(new InjectionConstructor());
             //container.RegisterType<ManageController>(new InjectionConstructor());
             container.RegisterType<LoginController>(new InjectionConstructor());

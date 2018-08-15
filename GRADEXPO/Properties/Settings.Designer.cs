@@ -49,5 +49,14 @@ namespace GRADEXPO.Properties {
                 return ((string)(this["postfixGetExpo"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("stand")]
+        public string postfixGetStand {
+            get {
+                return ((string)(this["postfixGetStand"]));
+            }
+        }
     }
 }

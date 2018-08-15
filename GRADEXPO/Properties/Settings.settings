@@ -11,5 +11,8 @@
     <Setting Name="postfixGetExpo" Type="System.String" Scope="Application">
       <Value Profile="(Default)">expo</Value>
     </Setting>
+    <Setting Name="postfixGetStand" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">stand</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

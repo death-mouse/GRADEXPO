@@ -49,30 +49,24 @@ namespace GRADEXPO.Controllers
 
             return View(exposViewModel);
         }
-
-        [HandleError]
-        public async Task<ActionResult> DetailsOfExpo(int Id)
+        
+        public async Task<ActionResult> DetailsOfExpo(int _idExpo)
         {
-            //try
             {
                 Expos expo = null;
                 switch (Properties.Settings.Default.GetDataFrom)
                 {
                     case "db":
-                        expo = await expoService.GetExpoAsync(Id);
+                        expo = await expoService.GetExpoAsync(_idExpo);
                         break;
                     case "Json":
-                        expo = await expoService.GetExpoFromJsonAsync(Id);
+                        expo = await expoService.GetExpoFromJsonAsync(_idExpo);
                         break;
                 }
                 return View(new ExposViewModel { Id = expo.expoId, DateStart = expo.startDate, DateEnd = expo.endDate, ExpoName = expo.expoName, Description = expo.description });
             }
-            /*catch(Exception ex)
-            {
-                return View("Error", new HandleErrorInfo(ex, "Expos", "DetailsOfExpo"));
-            }*/
         }
-
+        
         [HttpPost]
         public async Task<ActionResult> SaveExpo(ExposViewModel _expoViewModel, string _redirectUrl)
         {
