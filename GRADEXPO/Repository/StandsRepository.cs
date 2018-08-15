@@ -9,9 +9,9 @@ using System.Net;
 
 namespace GRADEXPO.Repository
 {
-    public class StendsRepository : IStendsRepository
+    public class StandsRepository : IStandsRepository
     {
-        public StendsRepository() { }
+        public StandsRepository() { }
 
         /// <summary>
         /// Получение конкретного стенда для выставки

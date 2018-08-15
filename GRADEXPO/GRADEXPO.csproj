@@ -214,7 +214,6 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
-    <Compile Include="App_Start\StendsController.cs" />
     <Compile Include="App_Start\UnityConfig.cs" />
     <Compile Include="App_Start\UnityMvcActivator.cs" />
     <Compile Include="Context\StandsContext.cs" />
@@ -247,9 +246,9 @@
     </Compile>
     <Compile Include="Repository\ExposRepository.cs" />
     <Compile Include="Repository\IExposRepository.cs" />
-    <Compile Include="Repository\IStendsRepository.cs" />
+    <Compile Include="Repository\IStandsRepository.cs" />
     <Compile Include="Repository\IUsersRepository.cs" />
-    <Compile Include="Repository\StendsRepository.cs" />
+    <Compile Include="Repository\StandsRepository.cs" />
     <Compile Include="Repository\UsersRepository.cs" />
     <Compile Include="Services\ExposService.cs" />
     <Compile Include="Services\IExposService.cs" />
@@ -261,6 +260,7 @@
     <Compile Include="ViewModelBuilders\AddUserViewModelBuilder.cs" />
     <Compile Include="ViewModels\ExposViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
+    <Compile Include="ViewModels\StandsViewModel.cs" />
     <Compile Include="ViewModels\UsersViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -324,6 +324,8 @@
     <Content Include="Views\Expos\EditExpo.cshtml" />
     <Content Include="Views\Expos\AddExpos.cshtml" />
     <Content Include="Views\Login\Index.cshtml" />
+    <Content Include="Views\Stands\InfoAboutStandsInExpo.cshtml" />
+    <Content Include="Views\Stands\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
@@ -338,8 +340,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\Anonymous\" />
-    <Folder Include="Views\Stands\" />
-    <Folder Include="Views\Stends\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

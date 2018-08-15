@@ -8,45 +8,45 @@ namespace GRADEXPO.Services
 {
     public class StandsService : IStandsService
     {
-        private readonly IStandsService standsService;
+        private readonly IStandsRepository standsRepository;
 
-        public StandsService(IStandsService _standsService)
+        public StandsService(IStandsRepository _standsRepository)
         {
-            standsService = _standsService;
+            standsRepository = _standsRepository;
         }
         public async Task<Stands> AddStandAsync(Stands _stand)
         {
-            return await standsService.AddStandAsync(_stand);
+            return await standsRepository.AddStandAsync(_stand);
         }
 
         public async Task DeleteStendsAsync(int _expoId, int _standId)
         {
-            await standsService.DeleteStendsAsync(_expoId, _standId);
+            await standsRepository.DeleteStendsAsync(_expoId, _standId);
         }
 
         public async Task DeleteStendsAsync(int _standId)
         {
-            await standsService.DeleteStendsAsync(_standId);
+            await standsRepository.DeleteStendsAsync(_standId);
         }
 
         public async Task<Stands> GetStandAsync(int _expoId, int _standId)
         {
-            return await standsService.GetStandAsync(_expoId, _standId);
+            return await standsRepository.GetStandAsync(_expoId, _standId);
         }
 
         public async Task<IEnumerable<Stands>> GetStandsAsync(int _expoId)
         {
-            return await standsService.GetStandsAsync(_expoId);
+            return await standsRepository.GetStandsAsync(_expoId);
         }
 
         public async Task<IEnumerable<Stands>> GetStandsAsync()
         {
-            return await standsService.GetStandsAsync();
+            return await standsRepository.GetStandsAsync();
         }
 
         public async Task<Stands> UpdateStendAsync(Stands _stands)
         {
-            return await standsService.UpdateStendAsync(_stands);
+            return await standsRepository.UpdateStendAsync(_stands);
         }
     }
 }

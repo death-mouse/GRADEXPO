@@ -1,0 +1,45 @@
+﻿@using GRADEXPO.Models;
+@model List<Stands>
+@{
+    ViewBag.Title = "Информация о стендах на выставке " + Model[0].expoName;
+}
+
+<h2>Информация о стендах на выставке "@Model[0].expoName "</h2>
+
+
+<div class="table-responsive">
+<table class="table table-hover table-bordered">
+    <thead>
+        <tr>
+            <th scope="col">Номер стенда</th>
+            <th scope="col">Зал</th>
+            <th scope="col">Поставщик</th>
+            <th scope="col">Стаус по работе на выставке</th>
+            <th scope="col">Дата встречи</th>
+            <th scope="col">Время встречи</th>
+            <th scope="col">Сотрудники</th>
+            <th scope="col">Контакты поставщика</th>
+            <th scope="col">Комментарии</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+        <tr class="table-active">
+            <td scope="row">@Html.DisplayFor(modelItem => item.standId)</td>
+            <td>@Html.DisplayFor(modelItem => item.hall)</td>
+            <td>@Html.DisplayFor(modelItem => item.vendorName)</td>
+            <td>@Html.DisplayFor(modelItem => item.standId)</td>
+            <td>????????????</td>
+            <td>????????????</td>
+            <td>????????????</td>
+            <td>????????????</td>
+            <td>????????????</td>
+            <td>
+            </td>
+        </tr>
+        }
+</table>
+</div>
+

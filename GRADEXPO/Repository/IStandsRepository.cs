@@ -5,7 +5,7 @@ using GRADEXPO.Models;
 
 namespace GRADEXPO.Repository
 {
-    public interface IStendsRepository
+    public interface IStandsRepository
     {
         Task<Stands> GetStandAsync(int _expoId, int _standId);
         Task<IEnumerable<Stands>> GetStandsAsync(int _expoId);

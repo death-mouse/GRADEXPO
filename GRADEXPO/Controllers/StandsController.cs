@@ -23,9 +23,10 @@ namespace GRADEXPO.Controllers
             return View();
         }
 
-        public async Task<ActionResult> InfoAboutStendsInExpo(int _idExpo)
+        public async Task<ActionResult> InfoAboutStandsInExpo(int _idExpo)
         {
             IEnumerable<Stands> result = await standsService.GetStandsAsync(_idExpo);
             return View(result);
         }
+    }
 }

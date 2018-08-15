@@ -35,6 +35,8 @@
                         @Html.ActionLink("Информация", "DetailsOfExpo", new { _idExpo = item.expoId })
 
                         @Html.ActionLink("Удалить", "DeleteExpo", new { id = item.expoId })
+
+                        @Html.ActionLink("Информация о стендах", "InfoAboutStandsInExpo", "Stands",  new { _idExpo = item.expoId }, null)
                     </div>
                 </td>
             </tr>
