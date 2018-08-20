@@ -15,5 +15,10 @@ namespace GRADEXPO.Models
             public string content { get; set; }
             public Int32 fileId { get; set; }
         }
+
+        public class Values
+        {
+            public List<File> value { get; set; }
+        }
     }
 }
