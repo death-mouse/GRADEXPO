@@ -18,5 +18,9 @@ namespace GRADEXPO.Models
         {
             public Expos Expos { get; set; }
         }
+        public class Values
+        {
+            public List<GRADEXPO.Models.Expos> value { get; set; }
+        }
     }
 }

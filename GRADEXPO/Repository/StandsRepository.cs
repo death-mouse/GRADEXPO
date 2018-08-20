@@ -54,17 +54,17 @@ namespace GRADEXPO.Repository
                         result = await standsContext.Stands.Where(f => f.expoId == _expoId).ToListAsync();
                     }
                     break;
-                case "Json":
-                    string json = await GRADEXPO.HttpClient.Browser.GetAsync(string.Format("{0}{1}/{2}/{3}", Properties.Settings.Default.BaseUrlApi, 
+                case "Json": 
+                    string json = await GRADEXPO.HttpClient.Browser.GetAsync(string.Format("{0}{1}({2})/{3}", Properties.Settings.Default.BaseUrlApi, 
                                                                                                              Properties.Settings.Default.postfixGetExpo,
                                                                                                              _expoId,
                                                                                                              Properties.Settings.Default.postfixGetStand));
-                    StandsFromJson.RootObject rootObject = await Task.Factory.StartNew(() => JsonConvert.DeserializeObject<StandsFromJson.RootObject>(json));
-                    if (rootObject.Stands == null)
+                    StandsFromJson.Values rootObject = await Task.Factory.StartNew(() => JsonConvert.DeserializeObject<StandsFromJson.Values>(json));
+                    if (rootObject.value == null)
                     {
                         throw new WebException(string.Format("Не удалось найти стенды для выставки с Id = {0}. Убедитесь в корретности выбранной выставки", _expoId));
                     }
-                    result = rootObject.Stands.Stand;
+                    result = rootObject.value;
                     break;
                 default:
                     throw new System.Exception(string.Format("Приложение не умеет работать с типом данных {0}. Если вам нужно работать с такими типом данным, обратитесь к разработчику", Properties.Settings.Default.GetDataFrom));

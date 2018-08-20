@@ -34,7 +34,7 @@ namespace GRADEXPO.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("http://zskpk02:8280/gradexpo/api/")]
+        [global::System.Configuration.DefaultSettingValueAttribute("http://zskpk02.z.loc:8280/odata/data/GREXPO/")]
         public string BaseUrlApi {
             get {
                 return ((string)(this["BaseUrlApi"]));
@@ -43,7 +43,7 @@ namespace GRADEXPO.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("expo")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Expo")]
         public string postfixGetExpo {
             get {
                 return ((string)(this["postfixGetExpo"]));
@@ -52,7 +52,7 @@ namespace GRADEXPO.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("stand")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Stand")]
         public string postfixGetStand {
             get {
                 return ((string)(this["postfixGetStand"]));

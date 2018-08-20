@@ -79,13 +79,17 @@ namespace GRADEXPO.Repository
 
         public async Task<Expos> GetExpoFromJsonAsync(int _id)
         {
-            string json = await GRADEXPO.HttpClient.Browser.GetAsync(string.Format("{0}{1}/{2}", Properties.Settings.Default.BaseUrlApi, Properties.Settings.Default.postfixGetExpo, _id));
+            /*string json = await GRADEXPO.HttpClient.Browser.GetAsync(string.Format("{0}{1}/{2}", Properties.Settings.Default.BaseUrlApi, Properties.Settings.Default.postfixGetExpo, _id));
             ExpoFromJson.RootObject result = await Task.Factory.StartNew(() => JsonConvert.DeserializeObject<ExpoFromJson.RootObject>(json));
             if(result.Expos == null)
             {
                 throw new WebException(string.Format("Не удалось найти выставку с Id = {0}. Убедитесь в корретности выбранной выставки", _id));
-            }
-            return result.Expos.Expo;
+            }*/
+            Expos expos = null;
+            string json = await HttpClient.Browser.GetAsync(string.Format("{0}{1}({2})", Properties.Settings.Default.BaseUrlApi, Properties.Settings.Default.postfixGetExpo, _id));
+            Expos rootObject = await Task.Factory.StartNew(() => JsonConvert.DeserializeObject<Expos>(json));
+            expos = rootObject;
+            return expos;
         }
 
         public async Task<ExposFromJson> AddExpoFromJsonAsync(ExposFromJson _expos)
@@ -99,10 +103,13 @@ namespace GRADEXPO.Repository
         public async Task<IEnumerable<Expos>> GetExposFromJsonAsync()
         {
             
-            string json = await GRADEXPO.HttpClient.Browser.GetAsync(string.Format("{0}{1}", Properties.Settings.Default.BaseUrlApi, Properties.Settings.Default.postfixGetExpo));
-            ExposFromJson.RootObject result = await Task.Factory.StartNew(() => JsonConvert.DeserializeObject<ExposFromJson.RootObject>(json));
-            
-            return result.Expos.Expo;
+            /*string json = await GRADEXPO.HttpClient.Browser.GetAsync(string.Format("{0}{1}", Properties.Settings.Default.BaseUrlApi, Properties.Settings.Default.postfixGetExpo));
+            ExposFromJson.RootObject result = await Task.Factory.StartNew(() => JsonConvert.DeserializeObject<ExposFromJson.RootObject>(json));*/
+            List<Expos> expos = null;
+            string json = await HttpClient.Browser.GetAsync(string.Format("{0}{1}", Properties.Settings.Default.BaseUrlApi, Properties.Settings.Default.postfixGetExpo));
+            ExposFromJson.Values rootObject = await Task.Factory.StartNew(() => JsonConvert.DeserializeObject<ExposFromJson.Values>(json));
+            expos = rootObject.value;
+            return expos;
 
         }
 

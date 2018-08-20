@@ -16,5 +16,10 @@ namespace GRADEXPO.Models
         {
             public Stands Stands { get; set; }
         }
+
+        public class Values
+        {
+            public List<Models.Stands> value { get; set; }
+        }
     }
 }
