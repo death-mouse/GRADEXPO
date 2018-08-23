@@ -7,12 +7,17 @@ namespace GRADEXPO.Models
 {
     public class SampleFilesFromJson
     {
-        public Int32 sampleId { get; set; }
-        public Int32 fileId { get; set; }
+        public class SampleFiles
+        {
+            public Int32 sampleId { get; set; }
+            public Int32 fileId { get; set; }
+        }
+
+        public class Values
+        {
+            public List<SampleFiles> value { get; set; }
+        }
     }
 
-    public class Values
-    {
-        public List<SampleFilesFromJson> value { get; set; }
-    }
+    
 }

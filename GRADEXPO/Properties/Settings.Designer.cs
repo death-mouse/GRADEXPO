@@ -34,7 +34,7 @@ namespace GRADEXPO.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("http://zskpk02.z.loc:8280/odata/data/GREXPO/")]
+        [global::System.Configuration.DefaultSettingValueAttribute("http://zskpk02.z.loc:8281/odata/data/GREXPO/")]
         public string BaseUrlApi {
             get {
                 return ((string)(this["BaseUrlApi"]));
@@ -56,6 +56,78 @@ namespace GRADEXPO.Properties {
         public string postfixGetStand {
             get {
                 return ((string)(this["postfixGetStand"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("ExpoFiles")]
+        public string postfixGetFileExpo {
+            get {
+                return ((string)(this["postfixGetFileExpo"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("File")]
+        public string postfixGetFile {
+            get {
+                return ((string)(this["postfixGetFile"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("ProductFiles")]
+        public string postfixGetProductFiles {
+            get {
+                return ((string)(this["postfixGetProductFiles"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Product")]
+        public string postfixGetProduct {
+            get {
+                return ((string)(this["postfixGetProduct"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Project")]
+        public string postfixGetProject {
+            get {
+                return ((string)(this["postfixGetProject"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("ProductSample")]
+        public string postfixGetProductSample {
+            get {
+                return ((string)(this["postfixGetProductSample"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("SampleFiles")]
+        public string postfixGetSampleFiles {
+            get {
+                return ((string)(this["postfixGetSampleFiles"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Sample")]
+        public string postfixgetSample {
+            get {
+                return ((string)(this["postfixgetSample"]));
             }
         }
     }

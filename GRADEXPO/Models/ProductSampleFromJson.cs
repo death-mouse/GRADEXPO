@@ -15,7 +15,7 @@ namespace GRADEXPO.Models
 
         public class Values
         {
-            public List<ProductSampleFromJson> value { get; set; }
+            public List<ProductSample> value { get; set; }
         }
     }
 }

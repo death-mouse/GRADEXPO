@@ -12,6 +12,7 @@ namespace GRADEXPO.Models
             public DateTimeOffset dateTime { get; set; }
             public string filename { get; set; }
             public Int32 authorId { get; set; }
+            public string fileType { get; set; }
             public string content { get; set; }
             public Int32 fileId { get; set; }
         }

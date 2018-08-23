@@ -13,9 +13,9 @@ namespace GRADEXPO.Services
         Task<Expos> UpdateExpoAsync(Expos _expo);
 
         Task<Expos> GetExpoFromJsonAsync(int _Id);
-        Task<ExposFromJson> AddExpoFromJsonAsync(ExposFromJson _expo);
+        Task<Expos> AddExpoFromJsonAsync(Expos _expo);
         Task<IEnumerable<Expos>> GetExposFromJsonAsync();
         Task DeleteExpoFromJsonAsync(int _id);
-        Task<ExposFromJson> UpdateExpoFromJsonAsync(ExposFromJson _expo);
+        Task<GRADEXPO.Models.Expos> UpdateExpoFromJsonAsync(GRADEXPO.Models.Expos _expo);
     }
 }

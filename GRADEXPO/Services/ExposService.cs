@@ -41,7 +41,7 @@ namespace GRADEXPO.Services
         }
 
 
-        public async Task<ExposFromJson> AddExpoFromJsonAsync(ExposFromJson _expo)
+        public async Task<Expos> AddExpoFromJsonAsync(Expos _expo)
         {
             return await exposRepository.AddExpoFromJsonAsync(_expo);
         }
@@ -56,7 +56,7 @@ namespace GRADEXPO.Services
             return await exposRepository.GetExpoFromJsonAsync(_id);
         }
 
-        public async Task<ExposFromJson> UpdateExpoFromJsonAsync(ExposFromJson _expos)
+        public async Task<GRADEXPO.Models.Expos> UpdateExpoFromJsonAsync(GRADEXPO.Models.Expos _expos)
         {
             return await exposRepository.UpdateExpoFromJsonAsync(_expos);
         }

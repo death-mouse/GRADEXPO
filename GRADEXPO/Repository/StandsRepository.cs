@@ -31,6 +31,12 @@ namespace GRADEXPO.Repository
                     }
                     break;
                 case "Json":
+                    string json = await GRADEXPO.HttpClient.Browser.GetAsync(string.Format("{0}{1}(standId = {2}, expoId = {3})", Properties.Settings.Default.BaseUrlApi,
+                                                                                                             Properties.Settings.Default.postfixGetStand,
+                                                                                                             _stendId,
+                                                                                                             _expoId));
+                    Stands stands = await Task.Factory.StartNew(() => JsonConvert.DeserializeObject<Stands>(json));
+                    result = stands;
                     break;
                 default:
                     throw new System.Exception(string.Format("Приложение не умеет работать с типом данных {0}. Если вам нужно работать с такими типом данным, обратитесь к разработчику", Properties.Settings.Default.GetDataFrom));

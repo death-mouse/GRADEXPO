@@ -16,12 +16,12 @@ namespace GRADEXPO.ViewModels
         public string ExpoName { get; set; }
 
         [Display(Name = "Дата начала выставки")]
-        [DataType(DataType.Date)]
+        [DataType(DataType.DateTime)]
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd.MM.yyyy}")]
         public DateTime DateStart { get; set; }
 
         [Display(Name = "Дата окончания выставки")]
-        [DataType(DataType.Date)]
+        [DataType(DataType.DateTime)]
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd.MM.yyyy}")]
         public DateTime DateEnd { get; set; }
 
