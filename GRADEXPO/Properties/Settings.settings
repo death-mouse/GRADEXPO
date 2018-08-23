@@ -1,0 +1,42 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="GRADEXPO.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="GetDataFrom" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Json</Value>
+    </Setting>
+    <Setting Name="BaseUrlApi" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">http://zskpk02.z.loc:8281/odata/data/GREXPO/</Value>
+    </Setting>
+    <Setting Name="postfixGetExpo" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Expo</Value>
+    </Setting>
+    <Setting Name="postfixGetStand" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Stand</Value>
+    </Setting>
+    <Setting Name="postfixGetFileExpo" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">ExpoFiles</Value>
+    </Setting>
+    <Setting Name="postfixGetFile" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">File</Value>
+    </Setting>
+    <Setting Name="postfixGetProductFiles" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">ProductFiles</Value>
+    </Setting>
+    <Setting Name="postfixGetProduct" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Product</Value>
+    </Setting>
+    <Setting Name="postfixGetProject" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Project</Value>
+    </Setting>
+    <Setting Name="postfixGetProductSample" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">ProductSample</Value>
+    </Setting>
+    <Setting Name="postfixGetSampleFiles" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">SampleFiles</Value>
+    </Setting>
+    <Setting Name="postfixgetSample" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Sample</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

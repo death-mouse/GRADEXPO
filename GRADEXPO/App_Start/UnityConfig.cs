@@ -1,12 +1,8 @@
+using GRADEXPO.Repository;
+using GRADEXPO.Services;
 using System;
 
 using Unity;
-using Unity.Builder.Operation;
-using Unity.AspNet.Mvc;
-using Unity.Injection;
-using GRADEXPO.Services;
-using GRADEXPO.Repository;
-using GRADEXPO.Controllers;
 
 namespace GRADEXPO
 {
@@ -40,23 +36,19 @@ namespace GRADEXPO
         /// allows resolving a concrete type even if it was not previously
         /// registered.
         /// </remarks>
-        /// 
-       
         public static void RegisterTypes(IUnityContainer container)
         {
             // NOTE: To load from web.config uncomment the line below.
             // Make sure to add a Unity.Configuration to the using statements.
             // container.LoadConfiguration();
-
-            // TODO: Register your type's mappings here.
-            // container.RegisterType<IProductRepository, ProductRepository>();
             container.RegisterType<IUsersRepository, UsersRepository>();
             container.RegisterType<IUsersService, UsersService>();
             container.RegisterType<IExposRepository, ExposRepository>();
             container.RegisterType<IExposService, ExposService>();
-            container.RegisterType<AccountController>(new InjectionConstructor());
-            container.RegisterType<ManageController>(new InjectionConstructor());
+            container.RegisterType<IStandsService, StandsService>();
+            container.RegisterType<IStandsRepository, StandsRepository>();
+            // TODO: Register your type's mappings here.
+            // container.RegisterType<IProductRepository, ProductRepository>();
         }
-
     }
 }

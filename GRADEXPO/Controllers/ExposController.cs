@@ -4,9 +4,24 @@ using GRADEXPO.Services;
 using GRADEXPO.ViewModels;
 using GRADEXPO.Models;
 using System;
+using System.Configuration;
+using System.Collections.Generic;
+using Simple.OData.Client;
+using System.Net;
+using Microsoft.Data.OData;
+using Microsoft.OData;
+using Microsoft.OData.Edm;
+using Newtonsoft.Json;
 
 namespace GRADEXPO.Controllers
 {
+    public class ExpoTest
+    {
+        public string ExpoName { get; set; }
+        public DateTimeOffset StartDate { get; set; }
+        public DateTimeOffset EndDate { get; set; }
+        public string Description { get; set; }
+    }
     public class ExposController : Controller
     {
         private readonly IExposService expoService;
@@ -15,10 +30,25 @@ namespace GRADEXPO.Controllers
         {
             expoService = _expoService;
         }
+
+
         // GET: Expo
         public async Task<ActionResult> Index()
         {
-            var expos = await expoService.GetExposAsync();
+
+
+            IEnumerable<Expos> expos = null;            
+            switch (Properties.Settings.Default.GetDataFrom)
+            {
+                case "db":
+                    expos = await expoService.GetExposAsync();
+                    break;
+                case "Json":
+                    expos = await expoService.GetExposFromJsonAsync();
+                    break;
+
+            }
+
 
             return View(expos);
         }
@@ -31,15 +61,26 @@ namespace GRADEXPO.Controllers
                 AddButtonTitle = "Создать",
                 RedirectUrl = Url.Action("Index", "Expos")
             };
+            
 
             return View(exposViewModel);
         }
-
-        public async Task<ActionResult> DetailsOfExpo(int Id)
+        
+        public async Task<ActionResult> DetailsOfExpo(int _idExpo)
         {
-            var expo = await expoService.GetExpoAsync(Id);
-
-            return View(new ExposViewModel { Id = expo.Id, DateStart = expo.StartDate, DateEnd = expo.EndDate, ExpoName = expo.ExpoName });
+            {
+                Expos expo = null;
+                switch (Properties.Settings.Default.GetDataFrom)
+                {
+                    case "db":
+                        expo = await expoService.GetExpoAsync(_idExpo);
+                        break;
+                    case "Json":
+                        expo = await expoService.GetExpoFromJsonAsync(_idExpo);
+                        break;
+                }
+                return View(new ExposViewModel { Id = expo.expoId, DateStart = expo.startDate, DateEnd = expo.endDate, ExpoName = expo.expoName, Description = expo.description });
+            }
         }
 
         [HttpPost]
@@ -49,30 +90,67 @@ namespace GRADEXPO.Controllers
             {
                 return View(_expoViewModel);
             }
-
-            var expo = await expoService.GetExpoAsync(_expoViewModel.Id);
-            if (expo != null)
+            switch (Properties.Settings.Default.GetDataFrom)
             {
-                expo.ExpoName = _expoViewModel.ExpoName;
-                expo.StartDate = _expoViewModel.DateStart;
-                expo.EndDate = _expoViewModel.DateEnd;
-                await expoService.UpdateExpoAsync(expo);
+                case "db":
+                    var expo = await expoService.GetExpoAsync(_expoViewModel.Id);
+                    if (expo != null)
+                    {
+                        expo.expoName = _expoViewModel.ExpoName;
+                        expo.startDate = _expoViewModel.DateStart;
+                        expo.endDate = _expoViewModel.DateEnd;
+                        await expoService.UpdateExpoAsync(expo);
+                    }
+                    break;
+                case "Json":
+                    var expo2 = await expoService.GetExpoFromJsonAsync(_expoViewModel.Id);
+                    if (expo2 != null)
+                    {
+                        expo2.expoName = _expoViewModel.ExpoName;
+                        expo2.startDate = _expoViewModel.DateStart;
+                        expo2.endDate = _expoViewModel.DateEnd;
+                        expo2.description = _expoViewModel.Description;
+                    }
+                    await expoService.UpdateExpoFromJsonAsync(expo2);
+                    break;
             }
+            
 
             return RedirectToLocal(_expoViewModel.RedirectUrl);
         }
         public async Task<ActionResult> EditExpo(int Id)
         {
-            var expo = await expoService.GetExpoAsync(Id);
-            var exposViewModel = new ExposViewModel
+            var exposViewModel = new ExposViewModel();
+            switch (Properties.Settings.Default.GetDataFrom)
             {
-                Title = "Изменение выставки",
-                AddButtonTitle = "Сохранить",
-                RedirectUrl = Url.Action("Index", "Expos"),
-                ExpoName = expo.ExpoName,
-                DateStart = expo.StartDate,
-                DateEnd = expo.EndDate
-            };
+                case "db":
+                    var expo = await expoService.GetExpoAsync(Id);
+                    exposViewModel = new ExposViewModel
+                    {
+                        Title = "Изменение выставки",
+                        AddButtonTitle = "Сохранить",
+                        RedirectUrl = Url.Action("Index", "Expos"),
+                        ExpoName = expo.expoName,
+                        DateStart = expo.startDate,
+                        DateEnd = expo.endDate,
+                        Description = expo.description
+                    };
+                    break;
+                case "Json":
+                    var expo2 = await expoService.GetExpoFromJsonAsync(Id);
+                    exposViewModel = new ExposViewModel
+                    {
+                        Title = "Изменение выставки",
+                        AddButtonTitle = "Сохранить",
+                        RedirectUrl = Url.Action("Index", "Expos"),
+                        ExpoName = expo2.expoName,
+                        DateStart = expo2.startDate,
+                        DateEnd = expo2.endDate,
+                        Description = expo2.description
+                    };
+                    break;
+
+            }
 
             return View(exposViewModel);
         }
@@ -91,16 +169,24 @@ namespace GRADEXPO.Controllers
             {
                 return View(_exposViewModel);
             }
-
             var expo = new Expos
             {
-                ExpoName = _exposViewModel.ExpoName,
-                StartDate = _exposViewModel.DateStart,
-                EndDate = _exposViewModel.DateEnd
+                expoName = _exposViewModel.ExpoName,
+                startDate = _exposViewModel.DateStart,
+                endDate = _exposViewModel.DateEnd,
+                description = _exposViewModel.Description
             };
+            switch (Properties.Settings.Default.GetDataFrom)
+            {
+                case "db":
 
-            await expoService.AddExpoAsync(expo);
+                    await expoService.AddExpoAsync(expo);
+                    break;
+                case "Json":
+                    await expoService.AddExpoFromJsonAsync(expo);
+                    break;
 
+            }
             return RedirectToLocal(redirectUrl);
         }
 

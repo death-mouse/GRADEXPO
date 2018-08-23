@@ -16,26 +16,30 @@
             <tr>
                 <th scope="col">Id</th>
                 <th scope="col">Название выставки</th>
+                <th scope="col">Описание выставки</th>
                 <th></th>
             </tr>
         </thead>
         <tbody>
             @foreach (var item in Model)
             {
-                <tr class="table-active">
-                    <td scope="row">@Html.DisplayFor(modelItem => item.Id)</td>
-                    <td>@Html.DisplayFor(modelItem => item.ExpoName)</td>
-                    <td>
-                        <div class="form-actions no-color">
-                            @Html.HiddenFor(id => item.Id)
-                            @Html.ActionLink("Изменить", "EditExpo", new { id = item.Id })
+            <tr class="table-active">
+                <td scope="row">@Html.DisplayFor(modelItem => item.expoId)</td>
+                <td>@Html.DisplayFor(modelItem => item.expoName)</td>
+                <td>@Html.DisplayFor(modelItem => item.description)</td>
+                <td>
+                    <div class="form-actions no-color">
+                        @Html.HiddenFor(id => item.expoId)
+                        @Html.ActionLink("Изменить", "EditExpo", new { id = item.expoId })
 
-                            @Html.ActionLink("Информация", "DetailsOfExpo", new { id = item.Id })
+                        @Html.ActionLink("Информация", "DetailsOfExpo", new { _idExpo = item.expoId })
 
-                            @Html.ActionLink("Удалить", "DeleteExpo", new { id = item.Id })
-                        </div>
-                    </td>
-                </tr>
+                        @Html.ActionLink("Удалить", "DeleteExpo", new { id = item.expoId })
+
+                        @Html.ActionLink("Информация о стендах", "InfoAboutStandsInExpo", "Stands",  new { _idExpo = item.expoId }, null)
+                    </div>
+                </td>
+            </tr>
             }
     </table>
 </div>

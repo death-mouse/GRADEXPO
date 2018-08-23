@@ -39,5 +39,31 @@ namespace GRADEXPO.Services
         {
             await exposRepository.DeleteExpoAsync(_id);
         }
+
+
+        public async Task<Expos> AddExpoFromJsonAsync(Expos _expo)
+        {
+            return await exposRepository.AddExpoFromJsonAsync(_expo);
+        }
+
+        public async Task<IEnumerable<Expos>> GetExposFromJsonAsync()
+        {
+            return await exposRepository.GetExposFromJsonAsync();
+        }
+
+        public async Task<Expos> GetExpoFromJsonAsync(Int32 _id)
+        {
+            return await exposRepository.GetExpoFromJsonAsync(_id);
+        }
+
+        public async Task<GRADEXPO.Models.Expos> UpdateExpoFromJsonAsync(GRADEXPO.Models.Expos _expos)
+        {
+            return await exposRepository.UpdateExpoFromJsonAsync(_expos);
+        }
+
+        public async Task DeleteExpoFromJsonAsync(Int32 _id)
+        {
+            await exposRepository.DeleteExpoFromJsonAsync(_id);
+        }
     }
 }
