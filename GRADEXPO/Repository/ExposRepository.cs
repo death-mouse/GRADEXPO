@@ -9,6 +9,7 @@ using GRADEXPO.Context;
 using System.Data.Entity;
 using Newtonsoft.Json;
 using System.Net;
+using System.IO;
 
 namespace GRADEXPO.Repository
 {
@@ -31,7 +32,6 @@ namespace GRADEXPO.Repository
         public async Task<Expos> AddExpoAsync(Expos _expos)
         {
             Expos result = null;
-
             using (var expoContext = new ExposContext())
             {
                 result = expoContext.Expos.Add(_expos);
@@ -88,7 +88,7 @@ namespace GRADEXPO.Repository
 
         public async Task<Expos> AddExpoFromJsonAsync(Expos _expos)
         {
-            Expos result = new Expos();
+            Expos result = null;
             string json = JsonConvert.SerializeObject(_expos, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Include, DefaultValueHandling = DefaultValueHandling.Ignore });
             string res = await HttpClient.Browser.ByMethodAsync(string.Format("{0}{1}", Properties.Settings.Default.BaseUrlApi, Properties.Settings.Default.postfixGetExpo), json, "POST");
 
@@ -100,7 +100,7 @@ namespace GRADEXPO.Repository
             
             List<Expos> expos = null;
             string json = await HttpClient.Browser.GetAsync(string.Format("{0}{1}", Properties.Settings.Default.BaseUrlApi, Properties.Settings.Default.postfixGetExpo));
-            ExposFromJson.Values rootObject = await Task.Factory.StartNew(() => JsonConvert.DeserializeObject<ExposFromJson.Values>(json));
+            ExposFromJson.Values rootObject = await Task.Factory.StartNew(() => JsonConvert.DeserializeObject<ExposFromJson.Values>(json, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore}));
             expos = rootObject.value;
             return expos;
 

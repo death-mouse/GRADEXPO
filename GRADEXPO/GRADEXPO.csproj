@@ -246,6 +246,7 @@
     <Compile Include="App_Start\UnityMvcActivator.cs" />
     <Compile Include="Context\StandsContext.cs" />
     <Compile Include="Controllers\AnonymousController.cs" />
+    <Compile Include="Controllers\ImageController.cs" />
     <Compile Include="Controllers\StandsController.cs" />
     <Compile Include="HttpClient\Browser.cs" />
     <Compile Include="Models\AdAuthenticationService.cs" />
@@ -298,17 +299,27 @@
     <Compile Include="Repository\IProductSampleRepository.cs" />
     <Compile Include="Repository\IProjectRepository.cs" />
     <Compile Include="Repository\ISampleFilesRepository.cs" />
+    <Compile Include="Repository\ISampleRepository.cs" />
     <Compile Include="Repository\IStandsRepository.cs" />
+    <Compile Include="Repository\IStandStatusRepository.cs" />
     <Compile Include="Repository\IUsersRepository.cs" />
+    <Compile Include="Repository\IVendorContactsRepository.cs" />
+    <Compile Include="Repository\IVendorRepository.cs" />
     <Compile Include="Repository\ProductFilesRepository.cs" />
     <Compile Include="Repository\ProductRepository.cs" />
     <Compile Include="Repository\ProductSampleRepository.cs" />
     <Compile Include="Repository\ProjectRepository.cs" />
     <Compile Include="Repository\SampleFilesRepository.cs" />
+    <Compile Include="Repository\SampleRepository.cs" />
     <Compile Include="Repository\StandsRepository.cs" />
+    <Compile Include="Repository\StandStatusRepository.cs" />
     <Compile Include="Repository\UsersRepository.cs" />
+    <Compile Include="Repository\VendorContactsRepository.cs" />
+    <Compile Include="Repository\VendorRepository.cs" />
     <Compile Include="Services\ExposService.cs" />
+    <Compile Include="Services\FileService.cs" />
     <Compile Include="Services\IExposService.cs" />
+    <Compile Include="Services\IFileService.cs" />
     <Compile Include="Services\IStandsService.cs" />
     <Compile Include="Services\IUsersService.cs" />
     <Compile Include="Services\StandsService.cs" />
@@ -338,6 +349,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <None Include="packages.config" />
+    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -388,6 +400,7 @@
     <Content Include="Views\Stands\InfoAboutStandsInExpo.cshtml" />
     <Content Include="Views\Stands\Index.cshtml" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
+    <Content Include="Views\Image\Show.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />

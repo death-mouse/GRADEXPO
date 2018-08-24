@@ -18,7 +18,7 @@
       <Value Profile="(Default)">ExpoFiles</Value>
     </Setting>
     <Setting Name="postfixGetFile" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">File</Value>
+      <Value Profile="(Default)">DataFile</Value>
     </Setting>
     <Setting Name="postfixGetProductFiles" Type="System.String" Scope="Application">
       <Value Profile="(Default)">ProductFiles</Value>
@@ -37,6 +37,12 @@
     </Setting>
     <Setting Name="postfixgetSample" Type="System.String" Scope="Application">
       <Value Profile="(Default)">Sample</Value>
+    </Setting>
+    <Setting Name="postfixGetVendorContacts" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">VendorContacts</Value>
+    </Setting>
+    <Setting Name="postfixGetVendor" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Vendor</Value>
     </Setting>
   </Settings>
 </SettingsFile>

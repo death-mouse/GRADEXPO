@@ -21,7 +21,7 @@ namespace GRADEXPO.Models
 
         public class Values
         {
-            List<VendorContactsFromJson> value { get; set; }
+            public List<VendorContacts> value { get; set; }
         }
     }
 

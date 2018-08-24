@@ -11,36 +11,28 @@
 <br />
 <h3>Список выставок</h3>
 <div class="table-responsive">
-    <table class="table table-hover table-bordered">
-        <thead>
-            <tr>
-                <th scope="col">Id</th>
-                <th scope="col">Название выставки</th>
-                <th scope="col">Описание выставки</th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in Model)
-            {
-            <tr class="table-active">
-                <td scope="row">@Html.DisplayFor(modelItem => item.expoId)</td>
-                <td>@Html.DisplayFor(modelItem => item.expoName)</td>
-                <td>@Html.DisplayFor(modelItem => item.description)</td>
-                <td>
-                    <div class="form-actions no-color">
-                        @Html.HiddenFor(id => item.expoId)
-                        @Html.ActionLink("Изменить", "EditExpo", new { id = item.expoId })
 
-                        @Html.ActionLink("Информация", "DetailsOfExpo", new { _idExpo = item.expoId })
+    @foreach (var item in Model)
+    {
+        <div class="jumbotron">
+            <h1 class="display-3">@Html.DisplayFor(modelItem => item.expoName)</h1>
+            <p class="lead">
+                @if (item.logoFileId != 0)
+                {
+                    <img src="@Url.Action("Show", "Image", new { id = item.logoFileId })" alt="Image" />
+                }
+                else
+                {
+                    <img src="@string.Format("{0}://{1}/Images/nonephote.png",Request.Url.Scheme, Request.Url.Authority )"  alt="Image" />
+                }
+            </p>
+            <hr class="my-4">
+            <p>@Html.DisplayFor(modelItem => item.description)</p>
+            <p class="lead">
+                @Html.ActionLink("Поробнее", "DetailsOfExpo", new { _idExpo = item.expoId }, new { @class="btn btn-primary btn-lg" })
+            </p>
+        </div>
+    }
 
-                        @Html.ActionLink("Удалить", "DeleteExpo", new { id = item.expoId })
-
-                        @Html.ActionLink("Информация о стендах", "InfoAboutStandsInExpo", "Stands",  new { _idExpo = item.expoId }, null)
-                    </div>
-                </td>
-            </tr>
-            }
-    </table>
 </div>
 

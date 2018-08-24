@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System;
+using System.Web;
 
 namespace GRADEXPO.ViewModels
 {
@@ -29,6 +30,9 @@ namespace GRADEXPO.ViewModels
         [DataType(DataType.Text)]
         public string Description { get; set; }
 
+
+        [Display(Name = "Логотип выставки")]
+        public HttpPostedFileBase logoFile { get; set; }
 
     }
 }

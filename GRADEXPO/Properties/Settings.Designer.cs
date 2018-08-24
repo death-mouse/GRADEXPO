@@ -70,7 +70,7 @@ namespace GRADEXPO.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("File")]
+        [global::System.Configuration.DefaultSettingValueAttribute("DataFile")]
         public string postfixGetFile {
             get {
                 return ((string)(this["postfixGetFile"]));
@@ -128,6 +128,24 @@ namespace GRADEXPO.Properties {
         public string postfixgetSample {
             get {
                 return ((string)(this["postfixgetSample"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("VendorContacts")]
+        public string postfixGetVendorContacts {
+            get {
+                return ((string)(this["postfixGetVendorContacts"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Vendor")]
+        public string postfixGetVendor {
+            get {
+                return ((string)(this["postfixGetVendor"]));
             }
         }
     }

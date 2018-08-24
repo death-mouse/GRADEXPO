@@ -47,6 +47,8 @@ namespace GRADEXPO
             container.RegisterType<IExposService, ExposService>();
             container.RegisterType<IStandsService, StandsService>();
             container.RegisterType<IStandsRepository, StandsRepository>();
+            container.RegisterType<IFileRepository, FileRepository>();
+            container.RegisterType<IFileService, FileService>();
             // TODO: Register your type's mappings here.
             // container.RegisterType<IProductRepository, ProductRepository>();
         }

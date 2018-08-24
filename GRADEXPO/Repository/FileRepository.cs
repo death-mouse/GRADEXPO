@@ -16,7 +16,7 @@ namespace GRADEXPO.Repository
             switch (Properties.Settings.Default.GetDataFrom)
             {
                 case "Json":
-                    string json = JsonConvert.SerializeObject(_file, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Include, DefaultValueHandling = DefaultValueHandling.Ignore });
+                    string json = JsonConvert.SerializeObject(_file, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore, DefaultValueHandling = DefaultValueHandling.Ignore });
                     string res = await HttpClient.Browser.ByMethodAsync(string.Format("{0}{1}", Properties.Settings.Default.BaseUrlApi, Properties.Settings.Default.postfixGetFile), json, "POST");
                     newFile = await Task.Factory.StartNew(() => JsonConvert.DeserializeObject<FileFromJson.File>(res));
                     break;

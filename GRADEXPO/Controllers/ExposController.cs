@@ -12,6 +12,9 @@ using Microsoft.Data.OData;
 using Microsoft.OData;
 using Microsoft.OData.Edm;
 using Newtonsoft.Json;
+using System.Web;
+using GRADEXPO.Repository;
+using System.IO;
 
 namespace GRADEXPO.Controllers
 {
@@ -163,7 +166,7 @@ namespace GRADEXPO.Controllers
             return RedirectToAction("Index", "Expos");
         }
         [HttpPost]
-        public async Task<ActionResult> AddNewExpo(ExposViewModel _exposViewModel, string redirectUrl)
+        public async Task<ActionResult> AddNewExpo(ExposViewModel _exposViewModel, string redirectUrl, HttpPostedFileBase uploadImage)
         {
             if (!ModelState.IsValid)
             {
@@ -174,8 +177,33 @@ namespace GRADEXPO.Controllers
                 expoName = _exposViewModel.ExpoName,
                 startDate = _exposViewModel.DateStart,
                 endDate = _exposViewModel.DateEnd,
-                description = _exposViewModel.Description
+                description = _exposViewModel.Description,
+                
             };
+            FileRepository fileRepository = new FileRepository();
+            byte[] bytes;
+            using (Stream inputStream = _exposViewModel.logoFile.InputStream)
+            {
+                MemoryStream memoryStream = inputStream as MemoryStream;
+                if (memoryStream == null)
+                {
+                    memoryStream = new MemoryStream();
+                    inputStream.CopyTo(memoryStream);
+                }
+                bytes = memoryStream.ToArray();
+            }
+            //Byte[] bytes = _exposViewModel.logoFile.//System.IO.File.ReadAllBytes(expos.logoFile);
+            String fileBase64 = Convert.ToBase64String(bytes);
+            FileFromJson.File file = new FileFromJson.File()
+            {
+                authorId = 2,
+                content = fileBase64,
+                filename = _exposViewModel.logoFile.FileName,
+                fileType = "logo",
+                dateTime = DateTimeOffset.Now
+            };
+            file = await fileRepository.AddFileFromJsonAsync(file);
+            expo.logoFileId = file.fileId;
             switch (Properties.Settings.Default.GetDataFrom)
             {
                 case "db":

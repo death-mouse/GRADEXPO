@@ -18,5 +18,7 @@ namespace GRADEXPO.Models
         public DateTime endDate { get; set; }
         [Display(Name = "Описание выставки")]
         public string description { get; set; }
+        public Int32 logoFileId { get; set; }
+        public string logoFile { get; set; }
     }
 }
