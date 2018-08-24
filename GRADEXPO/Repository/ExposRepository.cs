@@ -81,7 +81,7 @@ namespace GRADEXPO.Repository
         {
             Expos expos = null;
             string json = await HttpClient.Browser.GetAsync(string.Format("{0}{1}({2})", Properties.Settings.Default.BaseUrlApi, Properties.Settings.Default.postfixGetExpo, _id));
-            Expos rootObject = await Task.Factory.StartNew(() => JsonConvert.DeserializeObject<Expos>(json));
+            Expos rootObject = await Task.Factory.StartNew(() => JsonConvert.DeserializeObject<Expos>(json, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore, DefaultValueHandling = DefaultValueHandling.Ignore }));
             expos = rootObject;
             return expos;
         }

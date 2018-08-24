@@ -8,6 +8,27 @@
        $('.datepicker').datepicker(); //Initialise any date pickers
     });
 </script>
+<script>
+    $.validator.unobtrusive.adapters.add('filetype', ['validtypes'], function (options) {
+        options.rules['filetype'] = { validtypes: options.params.validtypes.split(',') };
+        options.messages['filetype'] = options.message;
+    });
+
+    $.validator.addMethod("filetype", function (value, element, param) {
+        if (!value) {
+            return true;
+        }
+        var extension = getFileExtension(value);
+        return $.inArray(extension, param.validtypes) !== -1;
+    });
+
+    function getFileExtension(fileName) {
+        if (/[.]/.exec(fileName)) {
+            return /[^.]+$/.exec(fileName)[0].toLowerCase();
+        }
+        return null;
+    }
+</script>
 <h2>@Model.Title</h2>
 
 <div class="row">
@@ -48,6 +69,7 @@
                     @Html.LabelFor(m => m.logoFile, new { @class = "col-md-2 control-label" })
                     <div class="col-md-10">
                         @Html.TextBoxFor(m => m.logoFile, "", new { @class = "form-control", type = "file" })
+                        @Html.ValidationMessageFor(m => m.logoFile, "", new { @class = "text-danger" })
                     </div>
                 </div>
                 <div class="form-group">

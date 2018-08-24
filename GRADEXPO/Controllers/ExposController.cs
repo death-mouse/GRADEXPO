@@ -36,6 +36,7 @@ namespace GRADEXPO.Controllers
 
 
         // GET: Expo
+        [Authorize]
         public async Task<ActionResult> Index()
         {
 
@@ -55,7 +56,7 @@ namespace GRADEXPO.Controllers
 
             return View(expos);
         }
-
+        [Authorize]
         public ActionResult AddExpos()
         {
             var exposViewModel = new ExposViewModel
@@ -68,7 +69,7 @@ namespace GRADEXPO.Controllers
 
             return View(exposViewModel);
         }
-        
+        [Authorize]
         public async Task<ActionResult> DetailsOfExpo(int _idExpo)
         {
             {
@@ -86,6 +87,7 @@ namespace GRADEXPO.Controllers
             }
         }
 
+        [Authorize]
         [HttpPost]
         public async Task<ActionResult> SaveExpo(ExposViewModel _expoViewModel, string _redirectUrl)
         {
@@ -121,6 +123,7 @@ namespace GRADEXPO.Controllers
 
             return RedirectToLocal(_expoViewModel.RedirectUrl);
         }
+        [Authorize]
         public async Task<ActionResult> EditExpo(int Id)
         {
             var exposViewModel = new ExposViewModel();
@@ -157,6 +160,7 @@ namespace GRADEXPO.Controllers
 
             return View(exposViewModel);
         }
+        [Authorize]
         private ActionResult RedirectToLocal(string returnUrl)
         {
             if (Url.IsLocalUrl(returnUrl))
@@ -165,6 +169,7 @@ namespace GRADEXPO.Controllers
             }
             return RedirectToAction("Index", "Expos");
         }
+        [Authorize]
         [HttpPost]
         public async Task<ActionResult> AddNewExpo(ExposViewModel _exposViewModel, string redirectUrl, HttpPostedFileBase uploadImage)
         {
@@ -182,28 +187,31 @@ namespace GRADEXPO.Controllers
             };
             FileRepository fileRepository = new FileRepository();
             byte[] bytes;
-            using (Stream inputStream = _exposViewModel.logoFile.InputStream)
+            if (_exposViewModel.logoFile != null)
             {
-                MemoryStream memoryStream = inputStream as MemoryStream;
-                if (memoryStream == null)
+                using (Stream inputStream = _exposViewModel.logoFile.InputStream)
                 {
-                    memoryStream = new MemoryStream();
-                    inputStream.CopyTo(memoryStream);
+                    MemoryStream memoryStream = inputStream as MemoryStream;
+                    if (memoryStream == null)
+                    {
+                        memoryStream = new MemoryStream();
+                        inputStream.CopyTo(memoryStream);
+                    }
+                    bytes = memoryStream.ToArray();
                 }
-                bytes = memoryStream.ToArray();
+                //Byte[] bytes = _exposViewModel.logoFile.//System.IO.File.ReadAllBytes(expos.logoFile);
+                String fileBase64 = Convert.ToBase64String(bytes);
+                FileFromJson.File file = new FileFromJson.File()
+                {
+                    authorId = 2,
+                    content = fileBase64,
+                    filename = _exposViewModel.logoFile.FileName,
+                    fileType = "logo",
+                    dateTime = DateTimeOffset.Now
+                };
+                file = await fileRepository.AddFileFromJsonAsync(file);
+                expo.logoFileId = file.fileId;
             }
-            //Byte[] bytes = _exposViewModel.logoFile.//System.IO.File.ReadAllBytes(expos.logoFile);
-            String fileBase64 = Convert.ToBase64String(bytes);
-            FileFromJson.File file = new FileFromJson.File()
-            {
-                authorId = 2,
-                content = fileBase64,
-                filename = _exposViewModel.logoFile.FileName,
-                fileType = "logo",
-                dateTime = DateTimeOffset.Now
-            };
-            file = await fileRepository.AddFileFromJsonAsync(file);
-            expo.logoFileId = file.fileId;
             switch (Properties.Settings.Default.GetDataFrom)
             {
                 case "db":
@@ -218,6 +226,7 @@ namespace GRADEXPO.Controllers
             return RedirectToLocal(redirectUrl);
         }
 
+        [Authorize]
         public async Task<ActionResult> DeleteExpo(int id)
         {
             await expoService.DeleteExpoAsync(id);

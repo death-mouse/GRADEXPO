@@ -5,8 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - GRADExpo</title>
     @Styles.Render("~/Content/css")
+    @Styles.Render("~/Content/jquery-ui.css")
     @Scripts.Render("~/bundles/modernizr")
 
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/Scripts/custom.js")
+    @Scripts.Render("~/Scripts/bootstrap.min.js")
+    @Scripts.Render("~/Scripts/jquery-ui.js")
+
+    @RenderSection("scripts", required: false)
+
+    <script>
+        $(function () {
+            $("#accordion").accordion();
+        });
+    </script>
 </head>
 <body>
     <nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-primary">
@@ -41,18 +55,8 @@
     </nav>
     <div class="container body-content">
         @RenderBody()
-        <hr />
 
     </div>
-    <div class="container body-content" style="clear: left;float: right;">
-        <footer>
-            <p>&copy; @DateTime.Now.Year - GRADEXPO by Дмитрий Астахов</p>
-        </footer>
-    </div>
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
-    @Scripts.Render("~/Scripts/custom.js")
-    @Scripts.Render("~/Scripts/bootstrap.min.js")
-    @RenderSection("scripts", required: false)
+    
 </body>
 </html>

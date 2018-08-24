@@ -1,36 +1,71 @@
 ﻿@using GRADEXPO.ViewModels
 @model ExposViewModel
 @{
-  //  ViewBag.Title = "Информация о пользователе"; //-71153, 07.08.2018
+    //  ViewBag.Title = "Информация о пользователе"; //-71153, 07.08.2018
     ViewBag.Title = "Информация о выставке";//+71153, 07.08.2018
 }
+<script>
+    var input = document.querySelectorAll('.input'),
+        buffer = [];
+    for (var i = 0; input.length > i; i++) {
+        console.log(input[i].value);
+        buffer[i] = document.createElement('div');
+        buffer[i].className = "buffer";
+        //вставляем скрытый div.buffer
+        input[i].parentNode.insertBefore(buffer[i], input[i].nextSibling);
 
-<h2>Информация о выставке</h2>
+        input[i].oninput = function () {
+            this.nextElementSibling.innerHTML = this.value;
+            this.style.width = this.nextElementSibling.clientWidth + 'px';
+        };
+    }
+</script>
+<br />
+<div id="accordion">
+    <h3>Детали</h3>
+    <div>
+        <div class="form-group">
+            <fieldset>
+                @Html.LabelFor(m => m.ExpoName, new { @class = "col-md-2 control-label" })
+                <input class="form-control" id="readOnlyInput" type="text" placeholder=" @Model.ExpoName" readonly="">
+            </fieldset>
+        </div>
 
-<br />
-<div class="form-group">
-    @Html.LabelFor(m => m.ExpoName, new { @class = "col-md-2 control-label" })
-    <div class="col-md-10">
-        @Model.ExpoName
+        <div class="form-group">
+            <fieldset>
+                @Html.LabelFor(m => m.DateStart, new { @class = "col-md-2 control-label" })
+                <input class="form-control" id="readOnlyInput" type="text" placeholder=" @Model.DateStart" readonly="">
+            </fieldset>
+        </div>
+
+        <div class="form-group">
+            <fieldset>
+                @Html.LabelFor(m => m.DateEnd, new { @class = "col-md-2 control-label" })
+                <input class="form-control" id="readOnlyInput" type="text" placeholder=" @Model.DateEnd" readonly="">
+            </fieldset>
+        </div>
+    </div>
+    <h3>Стенды</h3>
+    <div>
+        @{Html.RenderAction("InfoAboutStandsInExpo", "Stands", new { _idExpo = @Model.Id });}
+    </div>
+    <h3>Расписания</h3>
+    <div>
+        <p>tesdfsdfsddsfsdfsdfsdfsdfsdfsdfsdf</p>
+    </div>
+    <h3>Место</h3>
+    <div>
+        <p>tesdfsdfsddsfsdfsdfsdfsdfsdfsdfsdf</p>
+    </div>
+    <h3>Фото</h3>
+    <div>
+        <p>tesdfsdfsddsfsdfsdfsdfsdfsdfsdfsdf</p>
+    </div>
+    <h3>Файлы</h3>
+    <div>
+        <p>tesdfsdfsddsfsdfsdfsdfsdfsdfsdfsdf</p>
     </div>
 </div>
-<div class="form-group">
-    @Html.LabelFor(m => m.DateStart, new { @class = "col-md-2 control-label" })
-    <div class="col-md-10">
-        @Model.DateStart
-    </div>
-</div>
-<div class="form-group">
-    @Html.LabelFor(m => m.DateEnd, new { @class = "col-md-2 control-label" })
-    <div class="col-md-10">
-        @Model.DateEnd
-    </div>
-</div>
-<div class="form-group">
-    @Html.LabelFor(m => m.Description, new { @class = "col-md-2 control-label" })
-    <div class="col-md-10">
-        @Model.Description
-    </div>
-</div>
-<br />
+
+    
 

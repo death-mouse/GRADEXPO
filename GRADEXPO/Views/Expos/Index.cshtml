@@ -19,11 +19,11 @@
             <p class="lead">
                 @if (item.logoFileId != 0)
                 {
-                    <img src="@Url.Action("Show", "Image", new { id = item.logoFileId })" alt="Image" />
+                    <img src="@Url.Action("Show", "Image", new { id = item.logoFileId })" alt="Image" style="width:50%"/>
                 }
                 else
                 {
-                    <img src="@string.Format("{0}://{1}/Images/nonephote.png",Request.Url.Scheme, Request.Url.Authority )"  alt="Image" />
+                    <img src="@string.Format("{0}://{1}/Images/nonephote.png",Request.Url.Scheme, Request.Url.Authority )"  alt="Image" style="width:50%"/>
                 }
             </p>
             <hr class="my-4">
