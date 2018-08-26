@@ -237,6 +237,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Code\PrintEventCalendar.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\IdentityConfig.cs" />
@@ -244,6 +245,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\UnityConfig.cs" />
     <Compile Include="App_Start\UnityMvcActivator.cs" />
+    <Compile Include="Controllers\PlanVisitController.cs" />
     <Compile Include="Context\StandsContext.cs" />
     <Compile Include="Controllers\AnonymousController.cs" />
     <Compile Include="Controllers\ImageController.cs" />
@@ -305,6 +307,7 @@
     <Compile Include="Repository\IUsersRepository.cs" />
     <Compile Include="Repository\IVendorContactsRepository.cs" />
     <Compile Include="Repository\IVendorRepository.cs" />
+    <Compile Include="Repository\IVisitRepository.cs" />
     <Compile Include="Repository\ProductFilesRepository.cs" />
     <Compile Include="Repository\ProductRepository.cs" />
     <Compile Include="Repository\ProductSampleRepository.cs" />
@@ -316,14 +319,17 @@
     <Compile Include="Repository\UsersRepository.cs" />
     <Compile Include="Repository\VendorContactsRepository.cs" />
     <Compile Include="Repository\VendorRepository.cs" />
+    <Compile Include="Repository\VisitRepository.cs" />
     <Compile Include="Services\ExposService.cs" />
     <Compile Include="Services\FileService.cs" />
     <Compile Include="Services\IExposService.cs" />
     <Compile Include="Services\IFileService.cs" />
     <Compile Include="Services\IStandsService.cs" />
     <Compile Include="Services\IUsersService.cs" />
+    <Compile Include="Services\IVisitService.cs" />
     <Compile Include="Services\StandsService.cs" />
     <Compile Include="Services\UsersService.cs" />
+    <Compile Include="Services\VisitService.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModelBuilders\AddUserViewModelBuilder.cs" />
     <Compile Include="ViewModels\ExposViewModel.cs" />
@@ -340,7 +346,14 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\custom.mini.css" />
+    <Content Include="Content\fullcalendar.css" />
+    <Content Include="Content\fullcalendar.print.css" />
+    <Content Include="Content\fullcalendar.print.min.css" />
     <Content Include="Content\jquery-ui.css" />
+    <Content Include="Scripts\fullcalendar.min.js" />
+    <Content Include="Scripts\jquery.min.js" />
+    <Content Include="Scripts\locale-all.js" />
+    <Content Include="Scripts\moment.min.js" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -404,6 +417,8 @@
     <Content Include="Views\Stands\Index.cshtml" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
     <Content Include="Views\Image\Show.cshtml" />
+    <Content Include="Views\PlanVisit\Index.cshtml" />
+    <Content Include="Views\PlanVisit\VisitByExpo.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />

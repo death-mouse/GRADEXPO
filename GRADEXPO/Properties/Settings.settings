@@ -44,5 +44,8 @@
     <Setting Name="postfixGetVendor" Type="System.String" Scope="Application">
       <Value Profile="(Default)">Vendor</Value>
     </Setting>
+    <Setting Name="postfixGetVisit" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Visit</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

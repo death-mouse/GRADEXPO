@@ -148,5 +148,14 @@ namespace GRADEXPO.Properties {
                 return ((string)(this["postfixGetVendor"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Visit")]
+        public string postfixGetVisit {
+            get {
+                return ((string)(this["postfixGetVisit"]));
+            }
+        }
     }
 }

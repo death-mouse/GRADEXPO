@@ -51,7 +51,7 @@
     </div>
     <h3>Расписания</h3>
     <div>
-        <p>tesdfsdfsddsfsdfsdfsdfsdfsdfsdfsdf</p>
+        @{Html.RenderAction("VisitByExpo", "PlanVisit", new { expoId = @Model.Id });}
     </div>
     <h3>Место</h3>
     <div>

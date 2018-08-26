@@ -1,0 +1,44 @@
+﻿@using GRADEXPO.Models;
+@using GRADEXPO.App_Code
+@model List<VisitFromJson.Visit>
+@Scripts.Render("~/Scripts/moment.min.js")
+@Scripts.Render("~/Scripts/fullcalendar.min.js")
+@Scripts.Render("~/Scripts/locale-all.js")
+@Styles.Render("~/Content/fullcalendar.css")
+@{
+    ViewBag.Title = "VisitByExpo";
+}
+
+<script>
+
+    $(document).ready(function () {
+
+        $('#calendar').fullCalendar({
+            header: {
+                left: 'prev,next today',
+                center: 'title',
+                right: 'month,agendaWeek,agendaDay,listMonth'
+            },
+            defaultDate: '@DateTime.Now.ToString("yyyy-MM-dd")',
+            navLinks: true, // can click day/week names to navigate views
+            businessHours: true, // display business hours
+            editable: true,
+            locale: "ru",
+            events: [
+                @PrintEventCalendar.CreateEventList(Model)
+            ]
+        });
+
+    });
+
+</script>
+<style>
+
+    #calendar {
+    }
+</style>
+
+
+<div id='calendar'></div>
+
+
