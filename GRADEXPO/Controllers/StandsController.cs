@@ -23,10 +23,9 @@ namespace GRADEXPO.Controllers
             return View();
         }
 
-        public async Task<ActionResult> InfoAboutStandsInExpo(int _idExpo)
+        public ActionResult InfoAboutStandsInExpo(List<GRADEXPO.Models.Stands> stands)
         {
-            StandFromJson.Value result = await standsService.getStands(_idExpo);
-            return View(result);
+            return View(stands);
         }
     }
 }

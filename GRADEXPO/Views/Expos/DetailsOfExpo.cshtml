@@ -1,4 +1,5 @@
-﻿@using GRADEXPO.ViewModels
+﻿
+@using GRADEXPO.ViewModels
 @model ExposViewModel
 @{
     //  ViewBag.Title = "Информация о пользователе"; //-71153, 07.08.2018
@@ -44,14 +45,19 @@
                 <input class="form-control" id="readOnlyInput" type="text" placeholder=" @Model.DateEnd" readonly="">
             </fieldset>
         </div>
+        <div class="form-group">
+            <fieldset>
+                @Html.ActionLink("Изменить", "EditExpo", new { id = Model.Id }, new { @class = "btn btn-info btn-lg" })
+            </fieldset>
+        </div>
     </div>
     <h3>Стенды</h3>
     <div>
-        @{Html.RenderAction("InfoAboutStandsInExpo", "Stands", new { _idExpo = @Model.Id });}
+        @{Html.RenderAction("InfoAboutStandsInExpo", "Stands", new { stands = @Model.Stands });}
     </div>
     <h3>Расписания</h3>
     <div>
-        @{Html.RenderAction("VisitByExpo", "PlanVisit", new { expoId = @Model.Id });}
+        @{Html.RenderAction("VisitByExpo", "PlanVisit", new { visits = @Model.Visit, planVisit = @Model.PlanVisits });}
     </div>
     <h3>Место</h3>
     <div>
@@ -67,5 +73,5 @@
     </div>
 </div>
 
-    
+
 

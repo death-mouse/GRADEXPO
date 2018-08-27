@@ -1,6 +1,6 @@
 ﻿@using GRADEXPO.Models;
 @using GRADEXPO.App_Code
-@model List<VisitFromJson.Visit>
+@model List<PlanVisitModel>
 @Scripts.Render("~/Scripts/moment.min.js")
 @Scripts.Render("~/Scripts/fullcalendar.min.js")
 @Scripts.Render("~/Scripts/locale-all.js")
@@ -24,6 +24,7 @@
             businessHours: true, // display business hours
             editable: true,
             locale: "ru",
+            eventLimit: true,
             events: [
                 @PrintEventCalendar.CreateEventList(Model)
             ]

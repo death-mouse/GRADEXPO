@@ -5,12 +5,11 @@ using System.Web;
 
 namespace GRADEXPO.Models
 {
-    public class ExpoFromJson
+    public class ErrorModel
     {
-        
         public class RootObject
         {
-            public Models.Expos Expo { get; set; }
+            public string error { get; set; }
         }
     }
 }

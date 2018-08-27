@@ -261,11 +261,14 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\ErrorModel.cs" />
     <Compile Include="Models\ExpoFilesFromJson.cs" />
     <Compile Include="Models\ExpoFromJson.cs" />
     <Compile Include="Models\Expos.cs" />
     <Compile Include="Models\ExposFromJson.cs" />
     <Compile Include="Models\FileFromJson.cs" />
+    <Compile Include="Models\PlanVisitFromJson.cs" />
+    <Compile Include="Models\PlanVisitModel.cs" />
     <Compile Include="Repository\FileRepository.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ProductFilesFromJson.cs" />

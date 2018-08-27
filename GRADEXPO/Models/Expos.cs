@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
 using System;
+using System.Collections.Generic;
 
 namespace GRADEXPO.Models
 {
@@ -20,5 +21,8 @@ namespace GRADEXPO.Models
         public string description { get; set; }
         public Int32 logoFileId { get; set; }
         public string logoFile { get; set; }
+        public List<Models.Stands> Stand { get; set; }
+        public List<Models.VisitFromJson.Visit> Visit { get; set; }
+        public List<Models.PlanVisitFromjson.PlanVisit> PlanVisit { get; set; }
     }
 }

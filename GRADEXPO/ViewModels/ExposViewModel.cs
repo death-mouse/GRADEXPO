@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System;
 using System.Web;
+using System.Collections.Generic;
 
 namespace GRADEXPO.ViewModels
 {
@@ -36,5 +37,8 @@ namespace GRADEXPO.ViewModels
         [DisplayFormat(ApplyFormatInEditMode = true)]
         public HttpPostedFileBase logoFile { get; set; }
 
+        public List<Models.Stands> Stands { get; set; }
+        public List<Models.VisitFromJson.Visit> Visit { get; set; }
+        public List<Models.PlanVisitFromjson.PlanVisit> PlanVisits { get; set; }
     }
 }

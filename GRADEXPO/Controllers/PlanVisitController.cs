@@ -23,10 +23,31 @@ namespace GRADEXPO.Content
             return View();
         }
 
-        public async Task<ActionResult> VisitByExpo(int expoId)
+        public ActionResult VisitByExpo(List<GRADEXPO.Models.VisitFromJson.Visit> visits, List<Models.PlanVisitFromjson.PlanVisit> planVisit)
         {
-            IEnumerable<VisitFromJson.Visit> visits = await visitService.getVisitsByExpo(expoId);
-            return View(visits);
+            List<Models.PlanVisitModel> planVisitModels = new List<PlanVisitModel>();
+            foreach (Models.VisitFromJson.Visit visitFromJson in visits)
+            {
+                planVisitModels.Add(new PlanVisitModel()
+                {
+                    title = visitFromJson.comment,
+                    start = visitFromJson.visitDateTime.DateTime,
+                    type = 0
+
+                });
+            }
+            foreach (Models.PlanVisitFromjson.PlanVisit planVisitOne in planVisit)
+            {
+                planVisitModels.Add(new PlanVisitModel()
+                {
+                    title = planVisitOne.Comments,
+                    start = planVisitOne.planvisitDateTime,
+                    type = 1
+
+                });
+            }
+
+            return View(planVisitModels);
         }
     }
 }

@@ -83,7 +83,7 @@ namespace GRADEXPO.Controllers
                         expo = await expoService.GetExpoFromJsonAsync(_idExpo);
                         break;
                 }
-                return View(new ExposViewModel { Id = expo.expoId, DateStart = expo.startDate, DateEnd = expo.endDate, ExpoName = expo.expoName, Description = expo.description });
+                return View(new ExposViewModel { Id = expo.expoId, DateStart = expo.startDate, DateEnd = expo.endDate, ExpoName = expo.expoName, Description = expo.description, Stands = expo.Stand, Visit = expo.Visit, PlanVisits = expo.PlanVisit });
             }
         }
 
@@ -148,7 +148,7 @@ namespace GRADEXPO.Controllers
                     {
                         Title = "Изменение выставки",
                         AddButtonTitle = "Сохранить",
-                        RedirectUrl = Url.Action("Index", "Expos"),
+                        RedirectUrl = Url.Action("DetailsOfExpo", "Expos", new { _idExpo = Id }),
                         ExpoName = expo2.expoName,
                         DateStart = expo2.startDate,
                         DateEnd = expo2.endDate,
