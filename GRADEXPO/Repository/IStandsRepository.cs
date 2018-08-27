@@ -14,5 +14,6 @@ namespace GRADEXPO.Repository
         Task DeleteStendsAsync(int _expoId, int _standId);
         Task DeleteStendsAsync(int _standId);
         Task<Stands> UpdateStendAsync(Stands _stands);
+        Task<StandFromJson.Value> getStands(int _expoId);
     }
 }

@@ -18,5 +18,7 @@ namespace GRADEXPO.Models
         public string hall { get; set; }
         public int statusId { get; set; }
         public string statusName { get; set; }
+
+        public VendorFromJson.Vendor vendor { get; set; }
     }
 }

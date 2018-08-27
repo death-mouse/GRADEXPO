@@ -34,6 +34,11 @@ namespace GRADEXPO.Services
             return await standsRepository.GetStandAsync(_expoId, _standId);
         }
 
+        public async Task<StandFromJson.Value> getStands(int _expoId)
+        {
+            return await standsRepository.getStands(_expoId);
+        }
+
         public async Task<IEnumerable<Stands>> GetStandsAsync(int _expoId)
         {
             return await standsRepository.GetStandsAsync(_expoId);

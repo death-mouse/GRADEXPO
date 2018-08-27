@@ -4629,7 +4629,7 @@ var widgetsAccordion = $.widget( "ui.accordion", {
 
 		this._setupEvents( options.event );
 
-		if ( heightStyle === "fill" ) {
+		/*if ( heightStyle === "fill" ) {
 			maxHeight = parent.height();
 			this.element.siblings( ":visible" ).each( function() {
 				var elem = $( this ),
@@ -4665,7 +4665,7 @@ var widgetsAccordion = $.widget( "ui.accordion", {
 					}
 				} )
 				.height( maxHeight );
-		}
+		}*/
 	},
 
 	_activate: function( index ) {

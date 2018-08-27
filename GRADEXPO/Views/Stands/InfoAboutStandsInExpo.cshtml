@@ -1,5 +1,5 @@
 ﻿@using GRADEXPO.Models;
-@model List<Stands>
+@model  StandFromJson.Value
 @{
     ViewBag.Title = "Информация о стендах на выставке ";
 }
@@ -21,20 +21,26 @@
         </tr>
     </thead>
     <tbody>
-        @foreach (var item in Model)
+        @foreach (var item in Model.value)
         {
         <tr class="table-active">
             <td scope="row">@Html.DisplayFor(modelItem => item.standId)</td>
             <td>@Html.DisplayFor(modelItem => item.hall)</td>
-            <td>@Html.DisplayFor(modelItem => item.vendorName)</td>
+            @if (item.vendor != null)
+            {
+                <td>@Html.DisplayFor(modelItem => item.vendor.vendorName)</td>
+            }
+            else
+            {
+                <td></td>
+            }
             <td>@Html.DisplayFor(modelItem => item.standId)</td>
             <td>????????????</td>
             <td>????????????</td>
             <td>????????????</td>
             <td>????????????</td>
             <td>????????????</td>
-            <td>
-            </td>
+            <td></td>
         </tr>
         }
 </table>

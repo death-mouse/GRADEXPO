@@ -202,5 +202,28 @@ namespace GRADEXPO.Repository
             }
             return _stands;
         }
+
+        public async Task<StandFromJson.Value> getStands(int _expoId)
+        {
+            StandFromJson.Value result = null;//new List<Stands>();
+            switch (Properties.Settings.Default.GetDataFrom)
+            {
+                case "Json":
+                    //http://zskpk02.z.loc:8280/odata/data/GREXPO/Stand?$expand=Expo,Vendor&$filter=expoId%20eq%202
+                    string json = await GRADEXPO.HttpClient.Browser.GetAsync(string.Format("{0}{1}?$expand=Expo,Vendor&$filter=expoId%20eq%20{2}", Properties.Settings.Default.BaseUrlApi,
+                                                                                                             Properties.Settings.Default.postfixGetStand,
+                                                                                                             _expoId));
+                    result = await Task.Factory.StartNew(() => JsonConvert.DeserializeObject<StandFromJson.Value>(json));
+                    if (result.value == null)
+                    {
+                        throw new WebException(string.Format("Не удалось получить список всех стендов. Обратитесь к администратору"));
+                    }
+                    break;
+                default:
+                    throw new System.Exception(string.Format("Приложение не умеет работать с типом данных {0}. Если вам нужно работать с такими типом данным, обратитесь к разработчику", Properties.Settings.Default.GetDataFrom));
+                    break;
+            }
+            return result;
+        }
     }
 }
