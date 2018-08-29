@@ -129,6 +129,9 @@ namespace GRADEXPO.Repository
                     }
                     break;
                 case "Json":
+                    string json = JsonConvert.SerializeObject(_stand, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Include, DefaultValueHandling = DefaultValueHandling.Ignore });
+                    string res = await HttpClient.Browser.ByMethodAsync(string.Format("{0}{1}", Properties.Settings.Default.BaseUrlApi, Properties.Settings.Default.postfixGetStand), json, "POST");
+                    //StandsFromJson.Values rootObject = await Task.Factory.StartNew(() => JsonConvert.DeserializeObject<StandsFromJson.Values>(res, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore }));
                     break;
             }
             return result;

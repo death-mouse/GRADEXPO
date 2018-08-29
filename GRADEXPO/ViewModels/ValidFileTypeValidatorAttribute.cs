@@ -10,7 +10,7 @@ namespace GRADEXPO.ViewModels
     [AttributeUsage(AttributeTargets.Property, AllowMultiple = false, Inherited = true)]
     internal class ValidFileTypeValidatorAttribute : ValidationAttribute, IClientValidatable
     {
-        private const string _DefaultErrorMessage = "Поддерживаются только картинки формата: {0}";
+        private const string _DefaultErrorMessage = "Поддерживаются только файлы формата: {0}";
         private IEnumerable<string> _ValidTypes { get; set; }
 
         public ValidFileTypeValidatorAttribute(string validTypes)

@@ -3,15 +3,39 @@
 @{
     ViewBag.Title = Model.Title;
 }
+<script type="text/javascript">
+    $(function () { // will trigger when the document is ready
+        $('.datepicker').datepicker(); //Initialise any date pickers
+    });
+</script>
+<script>
+    $.validator.unobtrusive.adapters.add('filetype', ['validtypes'], function (options) {
+        options.rules['filetype'] = { validtypes: options.params.validtypes.split(',') };
+        options.messages['filetype'] = options.message;
+    });
 
+    $.validator.addMethod("filetype", function (value, element, param) {
+        if (!value) {
+            return true;
+        }
+        var extension = getFileExtension(value);
+        return $.inArray(extension, param.validtypes) !== -1;
+    });
+
+    function getFileExtension(fileName) {
+        if (/[.]/.exec(fileName)) {
+            return /[^.]+$/.exec(fileName)[0].toLowerCase();
+        }
+        return null;
+    }
+</script>
 <h2>@Model.Title</h2>
 
 <div class="row">
     <div class="col-md-8">
         <section id="loginForm">
-            @using (Html.BeginForm("SaveExpo", "Expos", new { RedirectUrl = Model.RedirectUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+            @using (Html.BeginForm("SaveExpo", "Expos", new { RedirectUrl = Model.RedirectUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form", enctype = "multipart/form-data" }))
             {
-                <hr />
                 <div class="form-group">
                     <div class="col-md-10">
                         @Html.HiddenFor(m => m.Id, new { @class = "form-control" })
@@ -31,7 +55,7 @@
                 <div class="form-group">
                     @Html.LabelFor(m => m.DateStart, new { @class = "col-md-2 control-label" })
                     <div class="col-md-10">
-                        @Html.TextBoxFor( m => m.DateStart, "{0:yyyy-MM-dd}", new { @class = "form-control", type = "date"})
+                        @Html.TextBoxFor(m => m.DateStart, "{0:yyyy-MM-dd}", new { @class = "form-control", type = "date" })
                         @Html.ValidationMessageFor(m => m.DateStart, "", new { @class = "text-danger" })
                     </div>
                 </div>
@@ -46,6 +70,13 @@
                     @Html.LabelFor(m => m.Description, new { @class = "col-md-2 control-label" })
                     <div class="col-md-10">
                         @Html.TextBoxFor(m => m.Description, "", new { @class = "form-control" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(m => m.logoFile, new { @class = "col-md-2 control-label" })
+                    <div class="col-md-10">
+                        @Html.TextBoxFor(m => m.logoFile, "", new { @class = "form-control", type = "file" })
+                        @Html.ValidationMessageFor(m => m.logoFile, "", new { @class = "text-danger" })
                     </div>
                 </div>
                 <div class="form-group">

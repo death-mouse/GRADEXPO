@@ -113,8 +113,15 @@ namespace GRADEXPO.Repository
 
         public async Task<GRADEXPO.Models.Expos> UpdateExpoFromJsonAsync(GRADEXPO.Models.Expos _expos)
         {
-            
-            string json = JsonConvert.SerializeObject(_expos, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Include, DefaultValueHandling = DefaultValueHandling.Ignore });
+            GRADEXPO.Models.Expos expos = new Expos()
+            {
+                expoName = _expos.expoName,
+                startDate = _expos.startDate,
+                description = _expos.description,
+                endDate = _expos.endDate,
+                logoFileId = _expos.logoFileId
+            };
+            string json = JsonConvert.SerializeObject(expos, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Include, DefaultValueHandling = DefaultValueHandling.Ignore });
             string res = await HttpClient.Browser.ByMethodAsync(string.Format("{0}{1}({2})", Properties.Settings.Default.BaseUrlApi, Properties.Settings.Default.postfixGetExpo, _expos.expoId), json, "PUT");
 
             return _expos;

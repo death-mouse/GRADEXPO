@@ -41,7 +41,7 @@ namespace GRADEXPO.Controllers
         {
 
 
-            IEnumerable<Expos> expos = null;            
+            IEnumerable<Expos> expos = null;
             switch (Properties.Settings.Default.GetDataFrom)
             {
                 case "db":
@@ -65,7 +65,7 @@ namespace GRADEXPO.Controllers
                 AddButtonTitle = "Создать",
                 RedirectUrl = Url.Action("Index", "Expos")
             };
-            
+
 
             return View(exposViewModel);
         }
@@ -89,7 +89,7 @@ namespace GRADEXPO.Controllers
 
         [Authorize]
         [HttpPost]
-        public async Task<ActionResult> SaveExpo(ExposViewModel _expoViewModel, string _redirectUrl)
+        public async Task<ActionResult> SaveExpo(ExposViewModel _expoViewModel, string _redirectUrl, HttpPostedFileBase uploadImage)
         {
             if (!ModelState.IsValid)
             {
@@ -116,10 +116,37 @@ namespace GRADEXPO.Controllers
                         expo2.endDate = _expoViewModel.DateEnd;
                         expo2.description = _expoViewModel.Description;
                     }
+                    FileRepository fileRepository = new FileRepository();
+                    byte[] bytes;
+                    if (_expoViewModel.logoFile != null)
+                    {
+                        using (Stream inputStream = _expoViewModel.logoFile.InputStream)
+                        {
+                            MemoryStream memoryStream = inputStream as MemoryStream;
+                            if (memoryStream == null)
+                            {
+                                memoryStream = new MemoryStream();
+                                inputStream.CopyTo(memoryStream);
+                            }
+                            bytes = memoryStream.ToArray();
+                        }
+                        //Byte[] bytes = _exposViewModel.logoFile.//System.IO.File.ReadAllBytes(expos.logoFile);
+                        String fileBase64 = Convert.ToBase64String(bytes);
+                        FileFromJson.File file = new FileFromJson.File()
+                        {
+                            authorId = 2,
+                            content = fileBase64,
+                            filename = _expoViewModel.logoFile.FileName,
+                            fileType = "logo",
+                            dateTime = DateTimeOffset.Now
+                        };
+                        file = await fileRepository.AddFileFromJsonAsync(file);
+                        expo2.logoFileId = file.fileId;
+                    }
                     await expoService.UpdateExpoFromJsonAsync(expo2);
                     break;
             }
-            
+
 
             return RedirectToLocal(_expoViewModel.RedirectUrl);
         }
@@ -183,7 +210,7 @@ namespace GRADEXPO.Controllers
                 startDate = _exposViewModel.DateStart,
                 endDate = _exposViewModel.DateEnd,
                 description = _exposViewModel.Description,
-                
+
             };
             FileRepository fileRepository = new FileRepository();
             byte[] bytes;
@@ -233,5 +260,6 @@ namespace GRADEXPO.Controllers
 
             return RedirectToAction("Index");
         }
+
     }
 }

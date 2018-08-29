@@ -33,7 +33,7 @@ namespace GRADEXPO.ViewModels
 
 
         [Display(Name = "Логотип выставки")]
-        [ValidFileTypeValidator("jpg, jpeg, gif")]
+        [ValidFileTypeValidator("jpg, jpeg, png")]
         [DisplayFormat(ApplyFormatInEditMode = true)]
         public HttpPostedFileBase logoFile { get; set; }
 

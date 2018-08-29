@@ -422,6 +422,8 @@
     <Content Include="Views\Image\Show.cshtml" />
     <Content Include="Views\PlanVisit\Index.cshtml" />
     <Content Include="Views\PlanVisit\VisitByExpo.cshtml" />
+    <Content Include="Views\Stands\impStand.cshtml" />
+    <Content Include="Views\Stands\AddStand.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
