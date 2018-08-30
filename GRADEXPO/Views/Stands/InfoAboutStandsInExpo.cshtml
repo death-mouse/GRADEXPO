@@ -8,10 +8,10 @@
 <table class="table table-hover table-bordered">
     <thead>
         <tr>
-            <th scope="col">Номер стенда</th>
             <th scope="col">Зал</th>
+            <th scope="col">Описание</th>
             <th scope="col">Поставщик</th>
-            <th scope="col">Стаус по работе на выставке</th>
+            <th scope="col">Стаус</th>
             <th scope="col">Дата встречи</th>
             <th scope="col">Время встречи</th>
             <th scope="col">Сотрудники</th>
@@ -24,8 +24,8 @@
         @foreach (var item in Model)
         {
         <tr class="table-active">
-            <td scope="row">@Html.DisplayFor(modelItem => item.standId)</td>
             <td>@Html.DisplayFor(modelItem => item.hall)</td>
+            <td>@Html.DisplayFor(modelItem => item.description)</td>
             @if (item.vendor != null)
             {
                 <td>@Html.DisplayFor(modelItem => item.vendor.vendorName)</td>
@@ -40,7 +40,7 @@
             <td>????????????</td>
             <td>????????????</td>
             <td>????????????</td>
-            <td></td>
+            <td>@Html.ActionLink("Изменить", "EditStand", "Stands", new { standId = item.standId, expoId = item.expoId}, new { @class = "btn btn-info btn-sm" })</td>
         </tr>
         }
 </table>

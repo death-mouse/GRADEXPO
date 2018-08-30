@@ -31,11 +31,10 @@ namespace GRADEXPO.Repository
                     }
                     break;
                 case "Json":
-                    string json = await GRADEXPO.HttpClient.Browser.GetAsync(string.Format("{0}{1}(standId = {2}, expoId = {3})", Properties.Settings.Default.BaseUrlApi,
+                    string json = await GRADEXPO.HttpClient.Browser.GetAsync(string.Format("{0}{1}({2})", Properties.Settings.Default.BaseUrlApi,
                                                                                                              Properties.Settings.Default.postfixGetStand,
-                                                                                                             _stendId,
-                                                                                                             _expoId));
-                    Stands stands = await Task.Factory.StartNew(() => JsonConvert.DeserializeObject<Stands>(json));
+                                                                                                             _stendId));
+                    Stands stands = await Task.Factory.StartNew(() => JsonConvert.DeserializeObject<Stands>(json, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore, DefaultValueHandling = DefaultValueHandling.Ignore }));
                     result = stands;
                     break;
                 default:
@@ -131,7 +130,7 @@ namespace GRADEXPO.Repository
                 case "Json":
                     string json = JsonConvert.SerializeObject(_stand, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Include, DefaultValueHandling = DefaultValueHandling.Ignore });
                     string res = await HttpClient.Browser.ByMethodAsync(string.Format("{0}{1}", Properties.Settings.Default.BaseUrlApi, Properties.Settings.Default.postfixGetStand), json, "POST");
-                    //StandsFromJson.Values rootObject = await Task.Factory.StartNew(() => JsonConvert.DeserializeObject<StandsFromJson.Values>(res, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore }));
+                    result = await Task.Factory.StartNew(() => JsonConvert.DeserializeObject<Stands>(res, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore }));
                     break;
             }
             return result;
@@ -201,6 +200,15 @@ namespace GRADEXPO.Repository
                     }
                     break;
                 case "Json":
+                    GRADEXPO.Models.Stands stands = new GRADEXPO.Models.Stands()
+                    {
+                        expoId = _stands.expoId,
+                        description = _stands.description,
+                        hall = _stands.hall,
+                        vendorId = _stands.vendorId
+                    };
+                    string json = JsonConvert.SerializeObject(stands, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Include, DefaultValueHandling = DefaultValueHandling.Ignore });
+                    string res = await HttpClient.Browser.ByMethodAsync(string.Format("{0}{1}({2})", Properties.Settings.Default.BaseUrlApi, Properties.Settings.Default.postfixGetStand, _stands.standId), json, "PUT");
                     break;
             }
             return _stands;

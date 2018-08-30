@@ -43,8 +43,57 @@ namespace GRADEXPO.Controllers
 
             return View(standViewModel);
         }
+        public async Task<ActionResult> UpdateStand(StandsViewModel standViewModel)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(standViewModel);
+            }
+            Stands stands = new Stands()
+            {
+                expoId = standViewModel.expoId,
+                standId = standViewModel.standId,
+                description = standViewModel.description,
+                hall = standViewModel.hall,
+                vendorId = standViewModel.vendorId
+            };
+            await standsService.UpdateStendAsync(stands);
+            return RedirectToLocal(standViewModel.RedirectUrl);
+        }
+        [Authorize]
+        public async Task<ActionResult> EditStand(int standId, int expoId)
+        {
+            var standsViewModel = new StandsViewModel();
+            switch (Properties.Settings.Default.GetDataFrom)
+            {
+                case "db":
+                    break;
+                case "Json":
+                    var stand = await standsService.GetStandAsync(expoId, standId);
+                    standsViewModel = new StandsViewModel
+                    {
+                        Title = "Изменение стенда",
+                        AddButtonTitle = "Сохранить",
+                        RedirectUrl = Url.Action("DetailsOfExpo", "Expos", new { _idExpo = expoId }),
+                        standId = stand.standId,
+                        expoId = stand.expoId,
+                        description = stand.description,
+                        statusId = stand.statusId,
+                        vendorId = stand.vendorId,
+                        hall = stand.hall
+                    };
+                    break;
+
+            }
+
+            return View(standsViewModel);
+        }
         public async Task<ActionResult> SaveStand(StandsViewModel standViewModel)
         {
+            if (!ModelState.IsValid)
+            {
+                return View(standViewModel);
+            }
             Stands stands = new Stands()
             {
                 expoId = standViewModel.expoId,
