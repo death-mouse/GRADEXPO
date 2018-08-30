@@ -24,5 +24,6 @@ namespace GRADEXPO.Models
         public List<Models.Stands> Stand { get; set; }
         public List<Models.VisitFromJson.Visit> Visit { get; set; }
         public List<Models.PlanVisitFromjson.PlanVisit> PlanVisit { get; set; }
+        public List<Models.ExpoFilesFromJson.ExpoFiles> ExpoFiles { get; set; }
     }
 }

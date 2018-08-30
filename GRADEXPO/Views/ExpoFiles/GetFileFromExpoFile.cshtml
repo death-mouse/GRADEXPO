@@ -1,0 +1,26 @@
+﻿@using GRADEXPO.Models;
+@model  List<FileFromJson.File>
+@{
+    ViewBag.Title = "Файлы выставки";
+}
+<div class="table-responsive">
+    <table class="table table-hover table-bordered">
+        <thead>
+            <tr>
+                <th scope="col">Id файла</th>
+                <th scope="col">Название выставки</th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr class="table-active">
+                    <td scope="row">@Html.DisplayFor(modelItem => item.fileId)</td>
+                    <td>@Html.DisplayFor(modelItem => item.filename)</td>
+                    <td>@Html.ActionLink("Скачать", "DownloadFile", new { fileId = item.fileId }, new { @class = "btn btn-primary btn-sm" })</td>
+                </tr>
+            }
+    </table>
+</div>
+

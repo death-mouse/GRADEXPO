@@ -245,6 +245,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\UnityConfig.cs" />
     <Compile Include="App_Start\UnityMvcActivator.cs" />
+    <Compile Include="Controllers\ExpoFilesController.cs" />
     <Compile Include="Controllers\PlanVisitController.cs" />
     <Compile Include="Context\StandsContext.cs" />
     <Compile Include="Controllers\AnonymousController.cs" />
@@ -263,10 +264,12 @@
     </Compile>
     <Compile Include="Models\ErrorModel.cs" />
     <Compile Include="Models\ExpoFilesFromJson.cs" />
+    <Compile Include="Services\ExpoFilesService.cs" />
     <Compile Include="Models\ExpoFromJson.cs" />
     <Compile Include="Models\Expos.cs" />
     <Compile Include="Models\ExposFromJson.cs" />
     <Compile Include="Models\FileFromJson.cs" />
+    <Compile Include="Services\IExpoFilesService.cs" />
     <Compile Include="Models\PlanVisitFromJson.cs" />
     <Compile Include="Models\PlanVisitModel.cs" />
     <Compile Include="Repository\FileRepository.cs" />
@@ -424,6 +427,7 @@
     <Content Include="Views\PlanVisit\VisitByExpo.cshtml" />
     <Content Include="Views\Stands\impStand.cshtml" />
     <Content Include="Views\Stands\AddStand.cshtml" />
+    <Content Include="Views\ExpoFiles\GetFileFromExpoFile.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />

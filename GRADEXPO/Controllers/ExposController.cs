@@ -83,7 +83,7 @@ namespace GRADEXPO.Controllers
                         expo = await expoService.GetExpoFromJsonAsync(_idExpo);
                         break;
                 }
-                return View(new ExposViewModel { Id = expo.expoId, DateStart = expo.startDate, DateEnd = expo.endDate, ExpoName = expo.expoName, Description = expo.description, Stands = expo.Stand, Visit = expo.Visit, PlanVisits = expo.PlanVisit });
+                return View(new ExposViewModel { Id = expo.expoId, DateStart = expo.startDate, DateEnd = expo.endDate, ExpoName = expo.expoName, Description = expo.description, Stands = expo.Stand, Visit = expo.Visit, PlanVisits = expo.PlanVisit, ExpoFiles =  expo.ExpoFiles});
             }
         }
 

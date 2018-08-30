@@ -71,7 +71,7 @@
     </div>
     <h3>Файлы</h3>
     <div>
-        <p>tesdfsdfsddsfsdfsdfsdfsdfsdfsdfsdf</p>
+        @{Html.RenderAction("GetFileFromExpoFile", "ExpoFiles", new { expoFilesFromJson = @Model.ExpoFiles });}
     </div>
 </div>
 
