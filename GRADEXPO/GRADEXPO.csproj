@@ -338,6 +338,7 @@
     <Compile Include="Services\VisitService.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModelBuilders\AddUserViewModelBuilder.cs" />
+    <Compile Include="ViewModels\ExposFilesViewModel.cs" />
     <Compile Include="ViewModels\ExposViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="ViewModels\StandsViewModel.cs" />
@@ -429,6 +430,7 @@
     <Content Include="Views\Stands\AddStand.cshtml" />
     <Content Include="Views\ExpoFiles\GetFileFromExpoFile.cshtml" />
     <Content Include="Views\Stands\EditStand.cshtml" />
+    <Content Include="Views\ExpoFiles\AddFile2Expo.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />

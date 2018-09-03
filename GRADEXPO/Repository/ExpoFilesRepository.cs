@@ -20,7 +20,7 @@ namespace GRADEXPO.Repository
             {
                 case "Json":
                     string json = JsonConvert.SerializeObject(_expoFilesFromJson, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Include, DefaultValueHandling = DefaultValueHandling.Ignore });
-                    string res = await HttpClient.Browser.ByMethodAsync(string.Format("{0}{1}", Properties.Settings.Default.BaseUrlApi, Properties.Settings.Default.postfixGetFileExpo), json, "POST");
+                    string res = await HttpClient.Browser.ByMethodAsync(string.Format("{0}{1}({2})/{3}", Properties.Settings.Default.BaseUrlApi, Properties.Settings.Default.postfixGetExpo, _expoFilesFromJson.expoId, Properties.Settings.Default.postfixGetFileExpo), json, "POST");
                     expoFiles = await Task.Factory.StartNew(() => JsonConvert.DeserializeObject<ExpoFilesFromJson.ExpoFiles>(res));
                     break;
                 default:

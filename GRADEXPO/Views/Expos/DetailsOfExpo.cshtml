@@ -72,6 +72,7 @@
     <h3>Файлы</h3>
     <div>
         @{Html.RenderAction("GetFileFromExpoFile", "ExpoFiles", new { expoFilesFromJson = @Model.ExpoFiles });}
+        @Html.ActionLink("Добавить файл", "AddFile2Expo", "ExpoFiles", new { expoId = Model.Id }, new { @class = "btn btn-primary btn-sm" })
     </div>
 </div>
 
