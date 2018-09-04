@@ -426,11 +426,11 @@
     <Content Include="Views\Image\Show.cshtml" />
     <Content Include="Views\PlanVisit\Index.cshtml" />
     <Content Include="Views\PlanVisit\VisitByExpo.cshtml" />
-    <Content Include="Views\Stands\impStand.cshtml" />
     <Content Include="Views\Stands\AddStand.cshtml" />
     <Content Include="Views\ExpoFiles\GetFileFromExpoFile.cshtml" />
     <Content Include="Views\Stands\EditStand.cshtml" />
     <Content Include="Views\ExpoFiles\AddFile2Expo.cshtml" />
+    <Content Include="Views\Stands\impStand.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
