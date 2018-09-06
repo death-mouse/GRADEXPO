@@ -1,0 +1,74 @@
+﻿@using GRADEXPO.ViewModels;
+@model VendorContactViewModel
+@{
+    ViewBag.Title = @Model.Title;
+}
+
+<h2> @Model.Title</h2>
+
+<div class="row">
+    <div class="col-md-8">
+        <section id="loginForm">
+            @using (Html.BeginForm("Save", "VendorContact", new { RedirectUrl = Model.RedirectUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+            {
+                <div class="form-group">
+                    <div class="col-md-10">
+                        @Html.HiddenFor(m => m.vendorId, new { @class = "form-control" })
+                        @Html.HiddenFor(m => m.contactId, new { @class = "form-control" })
+                    </div>
+                    <div class="col-md-10">
+                        @Html.HiddenFor(m => m.RedirectUrl, new { @class = "form-control" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(m => m.phone, new { @class = "col-md-2 control-label" })
+                    <div class="col-md-10">
+                        @Html.TextBoxFor(m => m.phone, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.phone, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(m => m.contactPosition, new { @class = "col-md-2 control-label" })
+                    <div class="col-md-10">
+                        @Html.TextBoxFor(m => m.contactPosition, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.contactPosition, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(m => m.email, new { @class = "col-md-2 control-label" })
+                    <div class="col-md-10">
+                        @Html.TextBoxFor(m => m.email, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.email, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(m => m.contactPerson, new { @class = "col-md-2 control-label" })
+                    <div class="col-md-10">
+                        @Html.TextBoxFor(m => m.contactPerson, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.contactPerson, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(m => m.description, new { @class = "col-md-2 control-label" })
+                    <div class="col-md-10">
+                        @Html.TextBoxFor(m => m.description, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.description, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(m => m.im, new { @class = "col-md-2 control-label" })
+                    <div class="col-md-10">
+                        @Html.TextBoxFor(m => m.im, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.im, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="@Model.AddButtonTitle" class="btn btn-success" />
+                    </div>
+                </div>
+            }
+        </section>
+    </div>
+</div>
+

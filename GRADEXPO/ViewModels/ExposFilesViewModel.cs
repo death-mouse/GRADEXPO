@@ -6,13 +6,8 @@ using System.Web;
 
 namespace GRADEXPO.ViewModels
 {
-    public class ExposFilesViewModel
+    public class ExposFilesViewModel : BaseViewModel
     {
-        public string Title { get; set; }
-        public string AddButtonTitle { get; set; }
-        public string RedirectUrl { get; set; }
-
-
         public int expoId { get; set; }
 
         [Display(Name = "Файл выставки")]

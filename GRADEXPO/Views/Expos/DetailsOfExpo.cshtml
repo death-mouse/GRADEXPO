@@ -21,6 +21,7 @@
         };
     }
 </script>
+
 <br />
 <div id="accordion">
     <h3>Детали</h3>
@@ -55,7 +56,7 @@
     <div>
         @{Html.RenderAction("InfoAboutStandsInExpo", "Stands", new { stands = @Model.Stands });}
         @Html.ActionLink("Создать", "AddStand", "Stands", new { expoId = Model.Id }, new { @class = "btn btn-info btn-lg" })
-        @Html.ActionLink("Импортировать из csv", "impStand", "Stands", new {  expoId = Model.Id }, new { @class = "btn btn-info btn-lg" })
+        @Html.ActionLink("Импортировать из csv", "impStand", "Stands", new { expoId = Model.Id }, new { @class = "btn btn-info btn-lg" })
     </div>
     <h3>Расписания</h3>
     <div>
@@ -69,8 +70,16 @@
     </div>
     <h3>Фото</h3>
     <div>
-        <div class="alert alert-dismissible alert-danger">
-            <strong>Данный модуль не реализован!</strong>
+        @Html.ActionLink("Загрузить", "AddPhoto", "Image", new { expoId = Model.Id }, new { @class = "btn btn-info btn-sm" })
+        <div class="simple_img_gallery">
+            <br />
+            <br />
+            <h5>Галерия</h5>
+            @foreach (var photo in Model.ExpoPhotos)
+            {
+
+                <a href="@Url.Action("Show", "Image", new { id = photo.fileId })" data-id="1"><img src="@Url.Action("Show", "Image", new { id = photo.fileId })" alt="Image" style="width:50%" /></a>
+            }
         </div>
     </div>
     <h3>Файлы</h3>
@@ -78,6 +87,17 @@
         @{Html.RenderAction("GetFileFromExpoFile", "ExpoFiles", new { expoFilesFromJson = @Model.ExpoFiles });}
         @Html.ActionLink("Добавить файл", "AddFile2Expo", "ExpoFiles", new { expoId = Model.Id }, new { @class = "btn btn-primary btn-sm" })
     </div>
+
 </div>
+@Scripts.Render("~/Scripts/jquery.gallery.js")
+@Styles.Render("~/Content/jquery.gallery.css")
+
+@Styles.Render("~/Content/jquery.gallery.css")
+@Styles.Render("~/Content/font-awesome.min.css")
+<script>
+    $(function () {
+        $('.simple_img_gallery').createSimpleImgGallery();
+    });
+</script>
 
 

@@ -55,6 +55,12 @@ namespace GRADEXPO
 
             container.RegisterType<IExpoFilesRepository, ExpoFilesRepository>();
             container.RegisterType<IExpoFilesService, ExpoFilesService>();
+
+            container.RegisterType<IVendorRepository, VendorRepository>();
+            container.RegisterType<IVendorService, VendorService>();
+
+            container.RegisterType<IVendorContactsRepository, VendorContactsRepository>();
+            container.RegisterType<IVendorContactsService, VendorContactsService>();
             // TODO: Register your type's mappings here.
             // container.RegisterType<IProductRepository, ProductRepository>();
         }

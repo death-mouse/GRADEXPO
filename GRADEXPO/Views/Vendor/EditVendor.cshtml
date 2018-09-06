@@ -1,0 +1,51 @@
+﻿@using GRADEXPO.ViewModels
+@model VendorViewModel
+@{
+    ViewBag.Title = Model.Title;
+}
+
+<h2>@Model.Title</h2>
+
+<div class="row">
+    <div class="col-md-8">
+        <section id="loginForm">
+            @using (Html.BeginForm("Update", "Vendor", new { RedirectUrl = Model.RedirectUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form"}))
+            {
+                <div class="form-group">
+                    <div class="col-md-10">
+                        @Html.HiddenFor(m => m.vendorId, new { @class = "form-control" })
+                    </div>
+                    <div class="col-md-10">
+                        @Html.HiddenFor(m => m.RedirectUrl, new { @class = "form-control" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(m => m.vendAccount, new { @class = "col-md-2 control-label" })
+                    <div class="col-md-10">
+                        @Html.TextBoxFor(m => m.vendAccount, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.vendAccount, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(m => m.vendorName, new { @class = "col-md-2 control-label" })
+                    <div class="col-md-10">
+                        @Html.TextBoxFor(m => m.vendorName, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.vendorName, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(m => m.description, new { @class = "col-md-2 control-label" })
+                    <div class="col-md-10">
+                        @Html.TextBoxFor(m => m.description, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.description, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="@Model.AddButtonTitle" class="btn btn-success" />
+                    </div>
+                </div>
+            }
+        </section>
+    </div>
+</div>

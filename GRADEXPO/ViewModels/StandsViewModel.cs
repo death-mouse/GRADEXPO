@@ -6,13 +6,9 @@ using System.Web;
 
 namespace GRADEXPO.ViewModels
 {
-    public class StandsViewModel
+    public class StandsViewModel : BaseViewModel
     {
-        public string Title { get; set; }
-        public string AddButtonTitle { get; set; }
-        public string RedirectUrl { get; set; }
-
-
+       
         public int expoId { get; set; }
         public string expoName { get; set; }
         [Display(Name ="ID поставщика")]

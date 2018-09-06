@@ -4,13 +4,9 @@ using System;
 
 namespace GRADEXPO.ViewModels
 {
-    public class UsersViewModel
+    public class UsersViewModel : BaseViewModel
     {
-        //еуые 2017
-        public string Title { get; set; }
-        public string AddButtonTitle { get; set; }
-        public string RedirectUrl { get; set; }
-
+       
         public Int32 Id { get; set; }
 
         [Display(Name = "Роль")]

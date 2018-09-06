@@ -5,12 +5,8 @@ using System.Collections.Generic;
 
 namespace GRADEXPO.ViewModels
 {
-    public class ExposViewModel
+    public class ExposViewModel : BaseViewModel
     {
-        public string Title { get; set; }
-        public string AddButtonTitle { get; set; }
-        public string RedirectUrl { get; set; }
-
         public Int32 Id { get; set; }
 
         [Display(Name = "Название выставки")]
@@ -41,5 +37,6 @@ namespace GRADEXPO.ViewModels
         public List<Models.VisitFromJson.Visit> Visit { get; set; }
         public List<Models.PlanVisitFromjson.PlanVisit> PlanVisits { get; set; }
         public List<Models.ExpoFilesFromJson.ExpoFiles> ExpoFiles { get; set; }
+        public List<Models.ExpoFilesFromJson.ExpoFiles> ExpoPhotos { get; set; }
     }
 }

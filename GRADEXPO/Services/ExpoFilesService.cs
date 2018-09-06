@@ -16,9 +16,9 @@ namespace GRADEXPO.Services
         {
             expoFilesRepository = _expoFilesRepository;
         }
-        public async Task<ExpoFilesFromJson.ExpoFiles> AddExpoFilesFromJsonAsync(ExpoFilesFromJson.ExpoFiles _expoFilesFromJson)
+        public async Task<ExpoFilesFromJson.ExpoFiles> AddExpoFilesFromJsonAsync(ExpoFilesFromJson.ExpoFiles _expoFilesFromJson, string _type = "fileExpo")
         {
-            return await expoFilesRepository.AddExpoFilesFromJsonAsync(_expoFilesFromJson);
+            return await expoFilesRepository.AddExpoFilesFromJsonAsync(_expoFilesFromJson, _type);
         }
 
         public async Task DeleteExpoAsync(int _expoId, int _fileId)

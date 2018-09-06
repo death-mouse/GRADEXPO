@@ -9,7 +9,7 @@ namespace GRADEXPO.Services
 {
     public interface IExpoFilesService
     {
-        Task<ExpoFilesFromJson.ExpoFiles> AddExpoFilesFromJsonAsync(ExpoFilesFromJson.ExpoFiles _expoFilesFromJson);
+        Task<ExpoFilesFromJson.ExpoFiles> AddExpoFilesFromJsonAsync(ExpoFilesFromJson.ExpoFiles _expoFilesFromJson, string _type);
 
         Task<IEnumerable<ExpoFilesFromJson.ExpoFiles>> GetExpoFilesAsync(int _expoId);
         Task<ExpoFilesFromJson.ExpoFiles> GetExpoFileJsonAsync(int _expoId, int _fileId);

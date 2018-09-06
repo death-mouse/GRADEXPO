@@ -34,51 +34,6 @@ namespace GRADEXPO.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("http://zskpk02.z.loc:8281/odata/data/GREXPO/")]
-        public string BaseUrlApi {
-            get {
-                return ((string)(this["BaseUrlApi"]));
-            }
-        }
-        
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Expo")]
-        public string postfixGetExpo {
-            get {
-                return ((string)(this["postfixGetExpo"]));
-            }
-        }
-        
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Stand")]
-        public string postfixGetStand {
-            get {
-                return ((string)(this["postfixGetStand"]));
-            }
-        }
-        
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("ExpoFiles")]
-        public string postfixGetFileExpo {
-            get {
-                return ((string)(this["postfixGetFileExpo"]));
-            }
-        }
-        
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("DataFile")]
-        public string postfixGetFile {
-            get {
-                return ((string)(this["postfixGetFile"]));
-            }
-        }
-        
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("ProductFiles")]
         public string postfixGetProductFiles {
             get {
@@ -133,7 +88,7 @@ namespace GRADEXPO.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("VendorContacts")]
+        [global::System.Configuration.DefaultSettingValueAttribute("contact")]
         public string postfixGetVendorContacts {
             get {
                 return ((string)(this["postfixGetVendorContacts"]));
@@ -142,7 +97,7 @@ namespace GRADEXPO.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Vendor")]
+        [global::System.Configuration.DefaultSettingValueAttribute("vendor")]
         public string postfixGetVendor {
             get {
                 return ((string)(this["postfixGetVendor"]));
@@ -155,6 +110,60 @@ namespace GRADEXPO.Properties {
         public string postfixGetVisit {
             get {
                 return ((string)(this["postfixGetVisit"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("http://zskpk02:8280/gradexpo/api/")]
+        public string BaseUrlApi {
+            get {
+                return ((string)(this["BaseUrlApi"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("expo")]
+        public string postfixGetExpo {
+            get {
+                return ((string)(this["postfixGetExpo"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("stand")]
+        public string postfixGetStand {
+            get {
+                return ((string)(this["postfixGetStand"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("files")]
+        public string postfixGetFileExpo {
+            get {
+                return ((string)(this["postfixGetFileExpo"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("file")]
+        public string postfixGetFile {
+            get {
+                return ((string)(this["postfixGetFile"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("photo")]
+        public string postfixGetPhoto {
+            get {
+                return ((string)(this["postfixGetPhoto"]));
             }
         }
     }

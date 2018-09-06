@@ -95,7 +95,7 @@ namespace GRADEXPO.Controllers
                 file = await fileRepository.AddFileFromJsonAsync(file);
                 expoFile.fileId = file.fileId;
             }
-            await expoFilesService.AddExpoFilesFromJsonAsync(expoFile);
+            await expoFilesService.AddExpoFilesFromJsonAsync(expoFile, "expoFile");
 
             return RedirectToLocal(exposFilesViewModel.RedirectUrl);
         }

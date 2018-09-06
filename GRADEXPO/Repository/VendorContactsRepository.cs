@@ -17,7 +17,7 @@ namespace GRADEXPO.Repository
             {
                 case "Json":
                     string json = JsonConvert.SerializeObject(_vendorContacts, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore, DefaultValueHandling = DefaultValueHandling.Ignore });
-                    string res = await HttpClient.Browser.ByMethodAsync(string.Format("{0}{1}", Properties.Settings.Default.BaseUrlApi, Properties.Settings.Default.postfixGetVendorContacts), json, "POST");
+                    string res = await HttpClient.Browser.ByMethodAsync(string.Format("{0}{1}({2})/{3}", Properties.Settings.Default.BaseUrlApi, Properties.Settings.Default.postfixGetVendor, _vendorContacts.vendorId, Properties.Settings.Default.postfixGetVendorContacts), json, "POST");
                     vendorContacts = await Task.Factory.StartNew(() => JsonConvert.DeserializeObject<VendorContactsFromJson.VendorContacts>(res));
                     break;
                 default:
@@ -66,7 +66,7 @@ namespace GRADEXPO.Repository
             switch (Properties.Settings.Default.GetDataFrom)
             {
                 case "Json":
-                    string json = await GRADEXPO.HttpClient.Browser.GetAsync(string.Format("{0}{1}({2})/{3})", Properties.Settings.Default.BaseUrlApi,
+                    string json = await GRADEXPO.HttpClient.Browser.GetAsync(string.Format("{0}{1}({2})/{3}", Properties.Settings.Default.BaseUrlApi,
                                                                                                              Properties.Settings.Default.postfixGetVendor,
                                                                                                              _vendorId,
                                                                                                              Properties.Settings.Default.postfixGetVendorContacts));

@@ -13,15 +13,25 @@ namespace GRADEXPO.Repository
     {
         public ExpoFilesRepository() { }
 
-        public async Task<models.ExpoFilesFromJson.ExpoFiles> AddExpoFilesFromJsonAsync(models.ExpoFilesFromJson.ExpoFiles _expoFilesFromJson)
+        public async Task<models.ExpoFilesFromJson.ExpoFiles> AddExpoFilesFromJsonAsync(models.ExpoFilesFromJson.ExpoFiles _expoFilesFromJson, string _type = "fileExpo")
         {
             ExpoFilesFromJson.ExpoFiles expoFiles = null;
             switch (Properties.Settings.Default.GetDataFrom)
             {
                 case "Json":
                     string json = JsonConvert.SerializeObject(_expoFilesFromJson, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Include, DefaultValueHandling = DefaultValueHandling.Ignore });
-                    string res = await HttpClient.Browser.ByMethodAsync(string.Format("{0}{1}({2})/{3}", Properties.Settings.Default.BaseUrlApi, Properties.Settings.Default.postfixGetExpo, _expoFilesFromJson.expoId, Properties.Settings.Default.postfixGetFileExpo), json, "POST");
-                    expoFiles = await Task.Factory.StartNew(() => JsonConvert.DeserializeObject<ExpoFilesFromJson.ExpoFiles>(res));
+
+                    string res = "";
+                    switch (_type)
+                    {
+                        case "fileExpo":
+                            res = await HttpClient.Browser.ByMethodAsync(string.Format("{0}{1}({2})/{3}", Properties.Settings.Default.BaseUrlApi, Properties.Settings.Default.postfixGetExpo, _expoFilesFromJson.expoId, Properties.Settings.Default.postfixGetFileExpo), json, "POST");
+                            break;
+                        case "photoExpo":
+                            res = await HttpClient.Browser.ByMethodAsync(string.Format("{0}{1}({2})/{3}", Properties.Settings.Default.BaseUrlApi, Properties.Settings.Default.postfixGetExpo, _expoFilesFromJson.expoId, Properties.Settings.Default.postfixGetPhoto), json, "POST");
+                            break;
+                    }
+                    expoFiles = await Task.Factory.StartNew(() => JsonConvert.DeserializeObject<ExpoFilesFromJson.ExpoFiles>(res));                    
                     break;
                 default:
                     throw new System.Exception(string.Format("Приложение не умеет работать с типом данных {0}. Если вам нужно работать с такими типом данным, обратитесь к разработчику", Properties.Settings.Default.GetDataFrom));

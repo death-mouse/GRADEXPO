@@ -5,21 +5,6 @@
     <Setting Name="GetDataFrom" Type="System.String" Scope="Application">
       <Value Profile="(Default)">Json</Value>
     </Setting>
-    <Setting Name="BaseUrlApi" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">http://zskpk02.z.loc:8281/odata/data/GREXPO/</Value>
-    </Setting>
-    <Setting Name="postfixGetExpo" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">Expo</Value>
-    </Setting>
-    <Setting Name="postfixGetStand" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">Stand</Value>
-    </Setting>
-    <Setting Name="postfixGetFileExpo" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">ExpoFiles</Value>
-    </Setting>
-    <Setting Name="postfixGetFile" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">DataFile</Value>
-    </Setting>
     <Setting Name="postfixGetProductFiles" Type="System.String" Scope="Application">
       <Value Profile="(Default)">ProductFiles</Value>
     </Setting>
@@ -39,13 +24,31 @@
       <Value Profile="(Default)">Sample</Value>
     </Setting>
     <Setting Name="postfixGetVendorContacts" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">VendorContacts</Value>
+      <Value Profile="(Default)">contact</Value>
     </Setting>
     <Setting Name="postfixGetVendor" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">Vendor</Value>
+      <Value Profile="(Default)">vendor</Value>
     </Setting>
     <Setting Name="postfixGetVisit" Type="System.String" Scope="Application">
       <Value Profile="(Default)">Visit</Value>
+    </Setting>
+    <Setting Name="BaseUrlApi" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">http://zskpk02:8280/gradexpo/api/</Value>
+    </Setting>
+    <Setting Name="postfixGetExpo" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">expo</Value>
+    </Setting>
+    <Setting Name="postfixGetStand" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">stand</Value>
+    </Setting>
+    <Setting Name="postfixGetFileExpo" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">files</Value>
+    </Setting>
+    <Setting Name="postfixGetFile" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">file</Value>
+    </Setting>
+    <Setting Name="postfixGetPhoto" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">photo</Value>
     </Setting>
   </Settings>
 </SettingsFile>

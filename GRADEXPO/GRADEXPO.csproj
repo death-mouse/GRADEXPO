@@ -237,6 +237,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\VendorContactController.cs" />
+    <Compile Include="Services\IVendorContactsService.cs" />
+    <Compile Include="Services\VendorContactsService.cs" />
+    <Compile Include="ViewModels\VendorContactViewModel.cs" />
+    <Compile Include="ViewModels\VendorViewModel.cs" />
     <Content Include="App_Code\PrintEventCalendar.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
@@ -251,6 +256,7 @@
     <Compile Include="Controllers\AnonymousController.cs" />
     <Compile Include="Controllers\ImageController.cs" />
     <Compile Include="Controllers\StandsController.cs" />
+    <Compile Include="Controllers\VendorController.cs" />
     <Compile Include="HttpClient\Browser.cs" />
     <Compile Include="Models\AdAuthenticationService.cs" />
     <Compile Include="Context\ExposContext.cs" />
@@ -332,14 +338,18 @@
     <Compile Include="Services\IFileService.cs" />
     <Compile Include="Services\IStandsService.cs" />
     <Compile Include="Services\IUsersService.cs" />
+    <Compile Include="Services\IVendorService.cs" />
     <Compile Include="Services\IVisitService.cs" />
     <Compile Include="Services\StandsService.cs" />
     <Compile Include="Services\UsersService.cs" />
+    <Compile Include="Services\VendorService.cs" />
     <Compile Include="Services\VisitService.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModelBuilders\AddUserViewModelBuilder.cs" />
+    <Compile Include="ViewModels\BaseViewModel.cs" />
     <Compile Include="ViewModels\ExposFilesViewModel.cs" />
     <Compile Include="ViewModels\ExposViewModel.cs" />
+    <Compile Include="ViewModels\ImageViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="ViewModels\StandsViewModel.cs" />
     <Compile Include="ViewModels\UsersViewModel.cs" />
@@ -353,11 +363,16 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\custom.mini.css" />
+    <Content Include="Content\font-awesome.css" />
+    <Content Include="Content\font-awesome.min.css" />
     <Content Include="Content\fullcalendar.css" />
     <Content Include="Content\fullcalendar.print.css" />
     <Content Include="Content\fullcalendar.print.min.css" />
     <Content Include="Content\jquery-ui.css" />
+    <Content Include="Content\jquery.gallery.css" />
     <Content Include="Scripts\fullcalendar.min.js" />
+    <Content Include="Scripts\jquery-2.1.4.js" />
+    <Content Include="Scripts\jquery.gallery.js" />
     <Content Include="Scripts\jquery.min.js" />
     <Content Include="Scripts\locale-all.js" />
     <Content Include="Scripts\moment.min.js" />
@@ -431,6 +446,14 @@
     <Content Include="Views\Stands\EditStand.cshtml" />
     <Content Include="Views\ExpoFiles\AddFile2Expo.cshtml" />
     <Content Include="Views\Stands\impStand.cshtml" />
+    <Content Include="Views\Vendor\Index.cshtml" />
+    <Content Include="Views\Image\AddPhoto.cshtml" />
+    <Content Include="Views\Vendor\DetailAboutVendor.cshtml" />
+    <Content Include="Views\Vendor\EditVendor.cshtml" />
+    <Content Include="Views\Vendor\Add.cshtml" />
+    <Content Include="Views\VendorContact\VendorContacts.cshtml" />
+    <Content Include="Views\VendorContact\Add.cshtml" />
+    <Content Include="Views\VendorContact\UpdateContact.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
