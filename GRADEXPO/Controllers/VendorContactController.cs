@@ -44,6 +44,10 @@ namespace GRADEXPO.Controllers
 
         public async Task<ActionResult> AddNew(VendorContactViewModel vendorContactViewModel)
         {
+            if (!ModelState.IsValid)
+            {
+                return View(vendorContactViewModel);
+            }
             VendorContactsFromJson.VendorContacts vendorContacts = new VendorContactsFromJson.VendorContacts()
             {
                 contactPerson = vendorContactViewModel.contactPerson,
@@ -69,8 +73,10 @@ namespace GRADEXPO.Controllers
             return RedirectToAction("Index", "Home");
         }
 
-        public ActionResult UpdateContact(VendorContactsFromJson.VendorContacts vendorContacts)
+        public async Task<ActionResult> UpdateContact(int vendorId, int contactId)
         {
+
+            VendorContactsFromJson.VendorContacts vendorContacts = await vendorContactsService.getVendorContact(vendorId, contactId);
             var vendorContactViewModel = new VendorContactViewModel()
             {
                 AddButtonTitle = "Изменить",
@@ -90,6 +96,10 @@ namespace GRADEXPO.Controllers
 
         public async Task<ActionResult> Save(VendorContactViewModel vendorContactViewModel)
         {
+            if (!ModelState.IsValid)
+            {
+                return View(vendorContactViewModel);
+            }
             VendorContactsFromJson.VendorContacts vendorContacts = new VendorContactsFromJson.VendorContacts()
             {
                 contactId = vendorContactViewModel.contactId,
@@ -101,7 +111,7 @@ namespace GRADEXPO.Controllers
                 description = vendorContactViewModel.description,
                 email = vendorContactViewModel.email
             };
-
+            await vendorContactsService.updateVendorContact(vendorContacts);
             return RedirectToLocal(vendorContactViewModel.RedirectUrl);
         }
     }

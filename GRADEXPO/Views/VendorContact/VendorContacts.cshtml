@@ -32,7 +32,7 @@
                         <td>@Html.DisplayFor(modelItem => item.contactPerson)</td>
                         <td>@Html.DisplayFor(modelItem => item.description)</td>
                         <td>@Html.DisplayFor(modelItem => item.im)</td>
-                        <td>@Html.ActionLink("Изменить", "UpdateContact", "VendorContact", new { vendorContacts = item }, new { @class = "btn btn-info btn-sm" })</td>
+                        <td>@Html.ActionLink("Изменить", "UpdateContact", "VendorContact", new { vendorId = item.vendorId, contactId = item.contactId }, new { @class = "btn btn-info btn-sm" })</td>
                     </tr>
                 }
         </table>
@@ -41,6 +41,6 @@
 </div>
 <br />
 <br />
-@Html.ActionLink("Добавить контакт", "Add", "VendorContact", new { vendorId = Model.FirstOrDefault().vendorId }, new { @class = "btn btn-primary btn-lg" })
+
 
 

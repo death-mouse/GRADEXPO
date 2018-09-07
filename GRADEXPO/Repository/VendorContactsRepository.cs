@@ -47,9 +47,11 @@ namespace GRADEXPO.Repository
             switch (Properties.Settings.Default.GetDataFrom)
             {
                 case "Json":
-                    string json = await GRADEXPO.HttpClient.Browser.GetAsync(string.Format("{0}{1}(vendorId = {2}, contactId = {3})", Properties.Settings.Default.BaseUrlApi,
-                                                                                                             Properties.Settings.Default.postfixGetVendorContacts,
+
+                    string json = await GRADEXPO.HttpClient.Browser.GetAsync(string.Format("{0}{1}({2})/{3}({4})", Properties.Settings.Default.BaseUrlApi,
+                                                                                                             Properties.Settings.Default.postfixGetVendor,
                                                                                                              _vendorId,
+                                                                                                             Properties.Settings.Default.postfixGetVendorContacts,
                                                                                                              _contactId));
                     vendorContacts = await Task.Factory.StartNew(() => JsonConvert.DeserializeObject<VendorContactsFromJson.VendorContacts>(json));
                     break;
@@ -80,9 +82,25 @@ namespace GRADEXPO.Repository
             return result;
         }
 
-        public Task<VendorContactsFromJson.VendorContacts> updateVendorContact(VendorContactsFromJson.VendorContacts _vendorContacts)
+        public async Task<VendorContactsFromJson.VendorContacts> updateVendorContact(VendorContactsFromJson.VendorContacts _vendorContacts)
         {
-            throw new NotImplementedException();
+            VendorContactsFromJson.VendorContacts result = null;
+            switch (Properties.Settings.Default.GetDataFrom)
+            {
+                case "Json":
+                    string json = JsonConvert.SerializeObject(_vendorContacts, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore, DefaultValueHandling = DefaultValueHandling.Ignore });
+                    string ret = await GRADEXPO.HttpClient.Browser.ByMethodAsync(string.Format("{0}{1}({2})/{3}({4})", Properties.Settings.Default.BaseUrlApi,
+                                                                                                             Properties.Settings.Default.postfixGetVendor,
+                                                                                                             _vendorContacts.vendorId,
+                                                                                                             Properties.Settings.Default.postfixGetVendorContacts,
+                                                                                                             _vendorContacts.contactId), json, "PUT");
+                    result = await Task.Factory.StartNew(() => JsonConvert.DeserializeObject<VendorContactsFromJson.VendorContacts>(ret));
+                    break;
+                default:
+                    throw new System.Exception(string.Format("Приложение не умеет работать с типом данных {0}. Если вам нужно работать с такими типом данным, обратитесь к разработчику", Properties.Settings.Default.GetDataFrom));
+            }
+
+            return result;
         }
     }
 }

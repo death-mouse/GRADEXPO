@@ -35,3 +35,5 @@
 
 @{Html.RenderAction("VendorContacts", "VendorContact", new { vendorId = @Model.vendorId });}
 
+@Html.ActionLink("Добавить контакт", "Add", "VendorContact", new { vendorId = @Model.vendorId }, new { @class = "btn btn-primary btn-lg" })
+

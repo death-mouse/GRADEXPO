@@ -12,14 +12,18 @@ namespace GRADEXPO.ViewModels
         public string im { get; set; }
         public Int32 contactId { get; set; }
         [Display(Name = "Телефон")]
+        [RegularExpression(@"^([0-9+])+$", ErrorMessage = "Введите корректный телефон. Вводить можно только цифры и +")]
         public string phone { get; set; }
         [Display(Name = "Должность")]
         public string contactPosition { get; set; }
+        [Display(Name = "ФИО")]
         public string contactPerson { get; set; }
         [Display(Name = "Описание")]
         public string description { get; set; }
         public Int32 vendorId { get; set; }
         [Display(Name = "EMail")]
+        [DataType(DataType.EmailAddress, ErrorMessage = "Введите корректный E-mail")]
+        [RegularExpression(@"^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$", ErrorMessage = "Введите корректный E-mail")]
         public string email { get; set; }
     }
 }
