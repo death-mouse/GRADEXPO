@@ -11,7 +11,7 @@ namespace GRADEXPO.ViewModels
 
         [Display(Name = "Роль")]
         [ RegularExpression(@"^[a-zA-Zа-яА_Я]*$", ErrorMessage = "Можно указывать только буквы")]
-        public string role { get; set; }
+        public int role { get; set; }
 
         [Display(Name = "Логин")]
         [Required(ErrorMessage = ("Поле логин должно быть заполненно")), RegularExpression(@"^[a-zA-Z0-9]*$", ErrorMessage = "Можно указывать только латиницу или цифры")]

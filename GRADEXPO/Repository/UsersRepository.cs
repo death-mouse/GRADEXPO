@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using GRADEXPO.Repository;
 using GRADEXPO.Context;
 using System.Data.Entity;
+using Newtonsoft.Json;
 
 namespace GRADEXPO.Repository
 {
@@ -14,65 +15,39 @@ namespace GRADEXPO.Repository
     {
         public UsersRepository() { }
 
-        public async Task<Users> GetUserAsync(Int32 _userId)
+        public async Task<Users.User> GetUserAsync(Int32 _userId)
         {
-            Users result = null;
-
-            using (var usersContext = new UsersContext())
-            {
-                result = await usersContext.users.FirstOrDefaultAsync(f=>f.userId == _userId);
-            }
-
-            return result;
+            throw new NotImplementedException();
         }
 
-        public async Task<Users> AddUserAsync(Users _usersModel)
+        public async Task<Users.User> AddUserAsync(Users.User _usersModel)
         {
-            Users result = null;
-
-            using (var usersContext = new UsersContext())
-            {
-                result = usersContext.users.Add(_usersModel);
-                await usersContext.SaveChangesAsync();
-            }
-
-            return result;
+            throw new NotImplementedException();
         }
 
-        public async Task<IEnumerable<Users>> GetUsersAsync()
+        public async Task<IEnumerable<Users.User>> GetUsersAsync()
         {
-            var result = new List<Users>();
-
-            using (var usersContext = new UsersContext())
+            var result = new List<Users.User>();
+            switch (Properties.Settings.Default.GetDataFrom)
             {
-                result = await usersContext.users.ToListAsync();
+                case "Json":
+                    string json = await HttpClient.Browser.GetAsync(string.Format("{0}{1}", Properties.Settings.Default.BaseUrlApi, Properties.Settings.Default.postfixGetUser));
+                    Users.RootObject rootObject = await Task.Factory.StartNew(() => JsonConvert.DeserializeObject<Users.RootObject>(json, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore }));
+                    result = rootObject.value;
+                    break;
+                    throw new System.Exception(string.Format("Приложение не умеет работать с типом данных {0}. Если вам нужно работать с такими типом данным, обратитесь к разработчику", Properties.Settings.Default.GetDataFrom));
             }
-
             return result;
         }
 
         public async Task DeleteUserAsync(Int32 id)
         {
-            using (var usersContext = new UsersContext())
-            {
-                var student = await usersContext.users.FirstOrDefaultAsync(f => f.userId == id);
-
-                usersContext.Entry(student).State = EntityState.Deleted;
-
-                await usersContext.SaveChangesAsync();
-            }
+            throw new NotImplementedException();
         }
 
-        public async Task<Users> UpdateUserAsync(Users _usersModel)
+        public async Task<Users.User> UpdateUserAsync(Users.User _usersModel)
         {
-            using (var usersContext = new UsersContext())
-            {
-                usersContext.Entry(_usersModel).State = EntityState.Modified;
-
-                await usersContext.SaveChangesAsync();
-            }
-
-            return _usersModel;
+            throw new NotImplementedException();
         }
     }
 }

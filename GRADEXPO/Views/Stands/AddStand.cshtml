@@ -48,14 +48,14 @@
                         @Html.ValidationMessageFor(m => m.hall, "", new { @class = "text-danger" })
                     </div>
                 </div>
+
                 <div class="form-group">
-                    @Html.LabelFor(m => m.vendorId, new { @class = "col-md-2 control-label" })
+                    @Html.LabelFor(m => m.vendorName, new { @class = "col-md-2 control-label" })
                     <div class="col-md-10">
-                        @Html.TextBoxFor(m => m.vendorId, new { @class = "form-control" })
-                        @Html.ValidationMessageFor(m => m.vendorId, "", new { @class = "text-danger" })
+                        @Html.DropDownListFor(m => m.vendorId, Model.vendorCombo, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.hall, "", new { @class = "text-danger" })
                     </div>
                 </div>
-
                 <div class="form-group">
                     <div class="col-md-offset-2 col-md-10">
                         <input type="submit" value="@Model.AddButtonTitle" class="btn btn-success" />

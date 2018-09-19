@@ -166,5 +166,14 @@ namespace GRADEXPO.Properties {
                 return ((string)(this["postfixGetPhoto"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("user")]
+        public string postfixGetUser {
+            get {
+                return ((string)(this["postfixGetUser"]));
+            }
+        }
     }
 }

@@ -50,5 +50,8 @@
     <Setting Name="postfixGetPhoto" Type="System.String" Scope="Application">
       <Value Profile="(Default)">photo</Value>
     </Setting>
+    <Setting Name="postfixGetUser" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">user</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

@@ -89,7 +89,7 @@ namespace GRADEXPO.Controllers
                 return View(_userViewModel);
             }
 
-            var user = new Users
+            var user = new Users.User
             {
                 userName = _userViewModel.userName,
                 role = _userViewModel.role,

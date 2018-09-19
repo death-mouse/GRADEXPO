@@ -8,6 +8,8 @@ using System.Drawing.Imaging;
 using System.Drawing;
 using System.IO;
 using System.Security.Cryptography;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace GRADEXPO.Models
 {
@@ -100,7 +102,7 @@ namespace GRADEXPO.Models
                 // revealing this information
                 return new AuthenticationResult("Ваша учетная запись отключена");
             }
-
+            
             var identity = CreateIdentity(userPrincipal);
 
             authenticationManager.SignOut(MyAuthentication.ApplicationCookie);
@@ -110,7 +112,7 @@ namespace GRADEXPO.Models
             return new AuthenticationResult();
         }
         
-
+        
         private ClaimsIdentity CreateIdentity(UserPrincipal userPrincipal)
         {
             var identity = new ClaimsIdentity(MyAuthentication.ApplicationCookie, ClaimsIdentity.DefaultNameClaimType, ClaimsIdentity.DefaultRoleClaimType);

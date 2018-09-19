@@ -15,22 +15,22 @@ namespace GRADEXPO.Services
             usersRepository = _usersRepository;
         }
 
-        public async Task<Users> AddUserAsync(Users _usersModels)
+        public async Task<Users.User> AddUserAsync(Users.User _usersModels)
         {
             return await usersRepository.AddUserAsync(_usersModels);
         }
 
-        public async Task<IEnumerable<Users>> GetUsersAsync()
+        public async Task<IEnumerable<Users.User>> GetUsersAsync()
         {
             return await usersRepository.GetUsersAsync();
         }
 
-        public async Task<Users> GetUserAsync(Int32 _userId)
+        public async Task<Users.User> GetUserAsync(Int32 _userId)
         {
             return await usersRepository.GetUserAsync(_userId);
         }
 
-        public async Task<Users> UpdateUserAsync(Users _userModel)
+        public async Task<Users.User> UpdateUserAsync(Users.User _userModel)
         {
             return await usersRepository.UpdateUserAsync(_userModel);
         }
@@ -39,5 +39,6 @@ namespace GRADEXPO.Services
         {
             await usersRepository.DeleteUserAsync(_userId);
         }
+
     }
 }

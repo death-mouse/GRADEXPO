@@ -6,10 +6,10 @@ namespace GRADEXPO.Services
 {
     public interface IUsersService
     {
-        Task<Users> GetUserAsync(int _userId);
-        Task<Users> AddUserAsync(Users _userModel);
-        Task<IEnumerable<Users>> GetUsersAsync();
+        Task<Users.User> GetUserAsync(int _userId);
+        Task<Users.User> AddUserAsync(Users.User _userModel);
+        Task<IEnumerable<Users.User>> GetUsersAsync();
         Task DeleteUserAsync(int _userId);
-        Task<Users> UpdateUserAsync(Users _userModel);
+        Task<Users.User> UpdateUserAsync(Users.User _userModel);
     }
 }

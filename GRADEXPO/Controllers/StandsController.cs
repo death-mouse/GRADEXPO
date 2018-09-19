@@ -30,17 +30,25 @@ namespace GRADEXPO.Controllers
             return View(stands);
         }
         [Authorize]
-        public ActionResult AddStand(int expoId)
+        public async Task<ActionResult> AddStand(int expoId)
         {
+            IVendorService vendorService = new VendorService(new Repository.VendorRepository());
+            IEnumerable<VendorFromJson.Vendor> vendors =  await vendorService.getVendorsAsync();
             var standViewModel = new StandsViewModel
             {
-                Title = "Импорт Стендов",
+                Title = "Создание Стенда",
                 AddButtonTitle = "Создать",
                 RedirectUrl = Url.Action("DetailsOfExpo", "Expos", new { _idExpo = expoId }),
-                expoId = expoId
+                expoId = expoId,
             };
-
-
+            List<SelectListItem> ObjItem = new List<SelectListItem>();
+            ObjItem.Add(new SelectListItem() { Text = "Укажите поставщика", Value = "0", Selected = true });
+            foreach (var vendor in vendors)
+            {
+                ObjItem.Add(new SelectListItem() { Text = vendor.vendorName, Value = vendor.vendorId.ToString() });
+            }
+            standViewModel.vendorCombo = ObjItem;
+           
             return View(standViewModel);
         }
         public async Task<ActionResult> UpdateStand(StandsViewModel standViewModel)
@@ -82,6 +90,14 @@ namespace GRADEXPO.Controllers
                         vendorId = stand.vendorId,
                         hall = stand.hall
                     };
+                    IVendorService vendorService = new VendorService(new Repository.VendorRepository());
+                    IEnumerable<VendorFromJson.Vendor> vendors = await vendorService.getVendorsAsync();
+                    List<SelectListItem> ObjItem = new List<SelectListItem>();
+                    foreach (var vendor in vendors)
+                    {
+                        ObjItem.Add(new SelectListItem() { Text = vendor.vendorName, Value = vendor.vendorId.ToString(), Selected = stand.vendorId == stand.vendorId });
+                    }
+                    standsViewModel.vendorCombo = ObjItem;
                     break;
 
             }
