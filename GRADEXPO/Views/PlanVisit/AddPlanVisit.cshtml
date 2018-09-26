@@ -1,0 +1,76 @@
+﻿@using GRADEXPO.ViewModels
+@model PlanVisitViewModel
+@{
+    ViewBag.Title = Model.Title;
+}
+<script src="~/Scripts/select2.min.js"></script>
+<link href="~/Content/select2.min.css" rel="stylesheet" />
+<h2>@Model.Title</h2>
+<script src="~/Scripts/bootstrap-datetimepicker.js"></script>
+<link href="~/Content/bootstrap-datetimepicker.min.css" rel="stylesheet" />
+<script src="~/Scripts/i18n/jquery-ui-timepicker-ru.js"></script>
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.2/css/bootstrapValidator.min.css" />
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.2/js/bootstrapValidator.min.js"></script>
+<div class="row">
+    <div class="col-md-8">
+        <section id="loginForm">
+            @using (Html.BeginForm("AddNewPlanVisit", "PlanVisit", new { RedirectUrl = Model.RedirectUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form", enctype = "multipart/form-data" }))
+            {
+                @Html.HiddenFor(m => m.expoId)
+                @Html.HiddenFor(m => m.standId)
+                @Html.HiddenFor(m => m.vendorId)
+                @Html.HiddenFor(m => m.RedirectUrl, new { @class = "form-control" })
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Comments, new { @class = "col-md-2 control-label" })
+                    <div class="col-md-10">
+                        @Html.TextBoxFor(m => m.Comments, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.Comments, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(m => m.planvisitDateTime, new { @class = "col-md-2 control-label" })
+                    <div class="col-md-10">
+                        @Html.TextBoxFor(m => m.planvisitDateTime, "{0:dd.MM.yyyy HH:ss}", new { @class = "form-control datepicker" })
+                        @Html.ValidationMessageFor(m => m.planvisitDateTime, "", new { @class = "text-danger" })
+
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(m => m.userListLable, new { @class = "col-md-2 control-label" })
+                    <div class="col-md-10">
+                        @Html.ListBox("userList")
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="@Model.AddButtonTitle" class="btn btn-success" />
+                    </div>
+                </div>
+            }
+        </section>
+    </div>
+</div>
+<script>
+    $(document).ready(function () {
+        $(".datepicker").datetimepicker({
+            language: 'ru',
+            weekStart: 1,
+            todayBtn: 1,
+            autoclose: 1,
+            todayHighlight: 1,
+            startView: 2,
+            forceParse: 0,
+            showMeridian: 1,
+            format: 'dd.mm.yyyy hh:ii',
+        });
+    });
+</script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#userList').select2({
+            placeholder: "Укажите пользователей",
+            maximumSelectionSize: 10,
+            width : 300
+        });
+    });
+</script>

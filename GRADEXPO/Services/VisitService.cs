@@ -16,6 +16,17 @@ namespace GRADEXPO.Services
         {
             visitRepository = _visitRepository;
         }
+
+        public async Task<PlanVisitFromjson.PlanVisit> addPlanVisit(PlanVisitFromjson.PlanVisit _visit)
+        {
+            return await visitRepository.addPlanVisit(_visit);
+        }
+
+        public async Task addPlanVisitUser(PlanUserVisits.PlanUserVisit planUserVisit)
+        {
+            await visitRepository.addPlanVisitUser(planUserVisit);
+        }
+
         public async Task<VisitFromJson.Visit> addVisit(VisitFromJson.Visit _visit)
         {
             return await visitRepository.addVisit(_visit);

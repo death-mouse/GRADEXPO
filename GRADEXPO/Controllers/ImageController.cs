@@ -59,7 +59,7 @@ namespace GRADEXPO.Controllers
                 String fileBase64 = Convert.ToBase64String(bytes);
                 FileFromJson.File file = new FileFromJson.File()
                 {
-                    authorId = 2,
+                    authorId = Convert.ToInt16(Session["UserId"]),
                     content = fileBase64,
                     filename = imageViewModel.photoFile.FileName,
                     fileType = "img",

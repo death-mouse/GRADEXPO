@@ -17,5 +17,8 @@ namespace GRADEXPO.Services
         Task<VisitFromJson.Visit> addVisit(VisitFromJson.Visit _visit);
         Task<VisitFromJson.Visit> updateVisit(VisitFromJson.Visit _visit);
         Task deleteVisit(int _visitId);
+
+        Task<PlanVisitFromjson.PlanVisit> addPlanVisit(PlanVisitFromjson.PlanVisit _visit);
+        Task addPlanVisitUser(PlanUserVisits.PlanUserVisit planUserVisit);
     }
 }

@@ -53,5 +53,11 @@
     <Setting Name="postfixGetUser" Type="System.String" Scope="Application">
       <Value Profile="(Default)">user</Value>
     </Setting>
+    <Setting Name="postfixGetPlanVisit" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">planVisit</Value>
+    </Setting>
+    <Setting Name="postfixGetPlanUserVisit" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">planUserVisit</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

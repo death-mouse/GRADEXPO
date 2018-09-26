@@ -27,7 +27,7 @@ namespace GRADEXPO.Controllers
 
         public ActionResult InfoAboutStandsInExpo(List<GRADEXPO.Models.Stands> stands)
         {
-            return View(stands);
+            return PartialView(stands);
         }
         [Authorize]
         public async Task<ActionResult> AddStand(int expoId)

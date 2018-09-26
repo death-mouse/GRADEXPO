@@ -10,6 +10,36 @@ namespace GRADEXPO.Repository
 {
     public class VisitRepository : IVisitRepository
     {
+        public async Task<PlanVisitFromjson.PlanVisit> addPlanVisit(PlanVisitFromjson.PlanVisit _visit)
+        {
+            PlanVisitFromjson.PlanVisit visit = null;
+            switch (Properties.Settings.Default.GetDataFrom)
+            {
+                case "Json":
+                    string json = JsonConvert.SerializeObject(_visit, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore, DefaultValueHandling = DefaultValueHandling.Ignore });
+                    string res = await HttpClient.Browser.ByMethodAsync(string.Format("{0}{1}", Properties.Settings.Default.BaseUrlApi, Properties.Settings.Default.postfixGetPlanVisit), json, "POST");
+                    visit = await Task.Factory.StartNew(() => JsonConvert.DeserializeObject<PlanVisitFromjson.PlanVisit>(res));
+                    break;
+                default:
+                    throw new System.Exception(string.Format("Приложение не умеет работать с типом данных {0}. Если вам нужно работать с такими типом данным, обратитесь к разработчику", Properties.Settings.Default.GetDataFrom));
+            }
+
+            return visit;
+        }
+
+        public async Task addPlanVisitUser(PlanUserVisits.PlanUserVisit planUserVisit)
+        {
+            switch (Properties.Settings.Default.GetDataFrom)
+            {
+                case "Json":
+                    string json = JsonConvert.SerializeObject(planUserVisit, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore, DefaultValueHandling = DefaultValueHandling.Ignore });
+                    string res = await HttpClient.Browser.ByMethodAsync(string.Format("{0}{1}", Properties.Settings.Default.BaseUrlApi, Properties.Settings.Default.postfixGetPlanUserVisit), json, "POST");
+                    break;
+                default:
+                    throw new System.Exception(string.Format("Приложение не умеет работать с типом данных {0}. Если вам нужно работать с такими типом данным, обратитесь к разработчику", Properties.Settings.Default.GetDataFrom));
+            }
+        }
+
         public async Task<VisitFromJson.Visit> addVisit(VisitFromJson.Visit _visit)
         {
             VisitFromJson.Visit visit = null;

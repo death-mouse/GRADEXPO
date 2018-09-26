@@ -2192,6 +2192,7 @@ pre {
     -webkit-box-shadow: 0 0 0 0.2rem rgba(89, 49, 150, 0.25);
     box-shadow: 0 0 0 0.2rem rgba(89, 49, 150, 0.25);
 }
+}
 
 .form-control::-webkit-input-placeholder {
     color: #868e96;
@@ -10039,10 +10040,10 @@ a.text-dark:hover, a.text-dark:focus {
     border-color: rgba(0, 0, 0, 0.05);
 }
 
-.form-control:focus {
+/*.form-control:focus {
     -webkit-box-shadow: 0 0 5px rgba(100, 65, 164, 0.4);
     box-shadow: 0 0 5px rgba(100, 65, 164, 0.4);
-}
+}*/
 
 .nav-tabs .nav-link,
 .nav-tabs .nav-link.active {

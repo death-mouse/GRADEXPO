@@ -40,7 +40,12 @@
             <td>????????????</td>
             <td>????????????</td>
             <td>????????????</td>
-            <td>@Html.ActionLink("Изменить", "EditStand", "Stands", new { standId = item.standId, expoId = item.expoId}, new { @class = "btn btn-info btn-sm" })</td>
+            <td>
+                @Html.ActionLink("Изменить", "EditStand", "Stands", new { standId = item.standId, expoId = item.expoId }, new { @class = "btn btn-info btn-sm" })
+                <br />
+                <br />
+                @Html.ActionLink("Запланировать визит", "AddPlanVisit", "PlanVisit", new { expoId = item.expoId, standId = item.standId, vendorId = item.vendorId }, new { @class = "btn btn-info btn-sm" })
+            </td>
         </tr>
         }
 </table>

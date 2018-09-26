@@ -175,5 +175,23 @@ namespace GRADEXPO.Properties {
                 return ((string)(this["postfixGetUser"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("planVisit")]
+        public string postfixGetPlanVisit {
+            get {
+                return ((string)(this["postfixGetPlanVisit"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("planUserVisit")]
+        public string postfixGetPlanUserVisit {
+            get {
+                return ((string)(this["postfixGetPlanUserVisit"]));
+            }
+        }
     }
 }

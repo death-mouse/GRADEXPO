@@ -43,6 +43,7 @@ namespace GRADEXPO.Controllers
                 ModelState.AddModelError("", "Найдено больше одной записи в пользователях для данного логина, обратитеть к администрации проекта");
                 return View(model);
             }
+            Session["UserId"] = idx;
             IAuthenticationManager authenticationManager = HttpContext.GetOwinContext().Authentication;
             var authService = new AdAuthenticationService(authenticationManager);
 

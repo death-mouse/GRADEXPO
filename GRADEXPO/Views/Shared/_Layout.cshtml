@@ -15,9 +15,9 @@
     @Scripts.Render("~/Scripts/jquery-ui.js")
     @Scripts.Render("~/Scripts/fullcalendar.min.js")
     @Scripts.Render("~/Scripts/moment.min.js")
-
+    <link href="~/Content/bootstrap-datetimepicker.css" rel="stylesheet" />
+    <script src="~/Scripts/bootstrap-datetimepicker.js"></script>
     @Scripts.Render("~/Scripts/locale-all.js")
-
     @RenderSection("scripts", required: false)
 
     <script>
@@ -61,6 +61,6 @@
         @RenderBody()
 
     </div>
-    
+
 </body>
 </html>

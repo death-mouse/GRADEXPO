@@ -6,6 +6,9 @@ using System.Web;
 using System.Web.Mvc;
 using GRADEXPO.Models;
 using System.Threading.Tasks;
+using GRADEXPO.ViewModels;
+using GRADEXPO.Repository;
+using System.Collections;
 
 namespace GRADEXPO.Content
 {
@@ -18,19 +21,20 @@ namespace GRADEXPO.Content
             visitService = _visitService;
         }
         // GET: PlanVisit
+        [Authorize]
         public ActionResult Index()
         {
             return View();
         }
-
+        [Authorize]
         public ActionResult VisitByExpo(List<GRADEXPO.Models.VisitFromJson.Visit> visits, List<Models.PlanVisitFromjson.PlanVisit> planVisit)
         {
-            List<Models.PlanVisitModel> planVisitModels = new List<PlanVisitModel>();
+            List<PlanVisitViewModel> planVisitModels = new List<PlanVisitViewModel>();
             foreach (Models.VisitFromJson.Visit visitFromJson in visits)
             {
-                planVisitModels.Add(new PlanVisitModel()
+                planVisitModels.Add(new PlanVisitViewModel()
                 {
-                    title = visitFromJson.comment,
+                    Title = visitFromJson.comment,
                     start = visitFromJson.visitDateTime.DateTime,
                     type = 0
 
@@ -38,9 +42,9 @@ namespace GRADEXPO.Content
             }
             foreach (Models.PlanVisitFromjson.PlanVisit planVisitOne in planVisit)
             {
-                planVisitModels.Add(new PlanVisitModel()
+                planVisitModels.Add(new PlanVisitViewModel()
                 {
-                    title = planVisitOne.Comments,
+                    Title = planVisitOne.Comments,
                     start = planVisitOne.planvisitDateTime,
                     type = 1
 
@@ -48,6 +52,68 @@ namespace GRADEXPO.Content
             }
 
             return View(planVisitModels);
+        }
+        [Authorize]
+        public async Task<ActionResult> AddPlanVisit(int expoId, int standId, int vendorId)
+        {
+            PlanVisitViewModel planVisitModel = new PlanVisitViewModel()
+            {
+
+                Title = "Запланировать визит",
+                AddButtonTitle = "Запланировать",
+                expoId = expoId,
+                standId = standId,
+                vendorId = vendorId,
+                RedirectUrl = Url.Action("DetailsOfExpo", "Expos", new { _idExpo = expoId }),
+                planvisitDateTime = DateTime.UtcNow
+
+            };
+            IEnumerable <Users.User> users = await new UsersService(new UsersRepository()).GetUsersAsync();
+            
+            MultiSelectList userList = new MultiSelectList(users, "userId", "UserName");
+            ViewBag.UserList = userList;
+            return View(planVisitModel);
+        }
+        [Authorize]
+        private ActionResult RedirectToLocal(string returnUrl)
+        {
+            if (Url.IsLocalUrl(returnUrl))
+            {
+                return Redirect(returnUrl);
+            }
+            return RedirectToAction("Index", "Expos");
+        }
+        [Authorize]
+        public async Task<ActionResult> AddNewPlanVisit(PlanVisitViewModel planVisitViewModel, string redirectUrl, int[] userList)
+        {
+           if(!ModelState.IsValid)
+            {
+                return View(planVisitViewModel);
+            }
+            
+            PlanVisitFromjson.PlanVisit planVisit = new PlanVisitFromjson.PlanVisit()
+            {
+                Comments = planVisitViewModel.Comments,
+                expoId = planVisitViewModel.expoId,
+                planvisitDateTime = planVisitViewModel.planvisitDateTime,
+                standId = planVisitViewModel.standId,
+                vendorId = planVisitViewModel.vendorId
+            };
+
+            planVisit = await visitService.addPlanVisit(planVisit);
+            if (userList != null)
+            {
+                foreach (int userId in userList)
+                {
+                    PlanUserVisits.PlanUserVisit planUserVisit = new PlanUserVisits.PlanUserVisit()
+                    {
+                        planVisitId = planVisit.planVisitId,
+                        userId = userId
+                    };
+                    await new VisitRepository().addPlanVisitUser(planUserVisit);
+                }
+            }
+            return RedirectToLocal(planVisitViewModel.RedirectUrl);
         }
     }
 }
