@@ -20,5 +20,6 @@ namespace GRADEXPO.Services
 
         Task<PlanVisitFromjson.PlanVisit> addPlanVisit(PlanVisitFromjson.PlanVisit _visit);
         Task addPlanVisitUser(PlanUserVisits.PlanUserVisit planUserVisit);
+        Task<IEnumerable<PlanUserVisits.PlanUserVisit>> getUserByPlanId(int planVisitId);
     }
 }

@@ -54,7 +54,7 @@
     </div>
     <h3>Стенды</h3>
     <div>
-        @{Html.RenderAction("InfoAboutStandsInExpo", "Stands", new { stands = @Model.Stands });}
+        @{Html.RenderAction("InfoAboutStandsInExpo", "Stands", new { stands = @Model.Stands, planVisits = @Model.PlanVisits });}
         @Html.ActionLink("Создать", "AddStand", "Stands", new { expoId = Model.Id }, new { @class = "btn btn-info btn-lg" })
         @Html.ActionLink("Импортировать из csv", "impStand", "Stands", new { expoId = Model.Id }, new { @class = "btn btn-info btn-lg" })
     </div>

@@ -37,6 +37,11 @@ namespace GRADEXPO.Services
             await visitRepository.deleteVisit(_visitId);
         }
 
+        public async Task<IEnumerable<PlanUserVisits.PlanUserVisit>> getUserByPlanId(int planVisitId)
+        {
+            return await visitRepository.getUserByPlanId(planVisitId);
+        }
+
         public async Task<VisitFromJson.Visit> getVisit(int _visitId)
         {
             return await visitRepository.getVisit(_visitId);

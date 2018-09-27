@@ -71,6 +71,23 @@ namespace GRADEXPO.Repository
             }
         }
 
+        public async Task<IEnumerable<PlanUserVisits.PlanUserVisit>> getUserByPlanId(int planVisitId)
+        {
+            List<PlanUserVisits.PlanUserVisit> visit = null;
+            switch (Properties.Settings.Default.GetDataFrom)
+            {
+                case "Json":
+                    string res = await HttpClient.Browser.GetAsync(string.Format("{0}{1}({2})/{3}s", Properties.Settings.Default.BaseUrlApi, Properties.Settings.Default.postfixGetPlanVisit, planVisitId, Properties.Settings.Default.postfixGetUser));
+                    PlanUserVisits.Value value = await Task.Factory.StartNew(() => JsonConvert.DeserializeObject<PlanUserVisits.Value>(res, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore, DefaultValueHandling = DefaultValueHandling.Ignore }));
+                    visit = value.value;
+                    break;
+                default:
+                    throw new System.Exception(string.Format("Приложение не умеет работать с типом данных {0}. Если вам нужно работать с такими типом данным, обратитесь к разработчику", Properties.Settings.Default.GetDataFrom));
+            }
+
+            return visit;
+        }
+
         public async Task<VisitFromJson.Visit> getVisit(int _visitId)
         {
             VisitFromJson.Visit visit = null;

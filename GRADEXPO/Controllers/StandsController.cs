@@ -1,4 +1,5 @@
 ﻿using GRADEXPO.Models;
+using GRADEXPO.Repository;
 using GRADEXPO.Services;
 using GRADEXPO.ViewModels;
 using System;
@@ -25,9 +26,26 @@ namespace GRADEXPO.Controllers
             return View();
         }
 
-        public ActionResult InfoAboutStandsInExpo(List<GRADEXPO.Models.Stands> stands)
+        public async Task<ActionResult> InfoAboutStandsInExpo(List<GRADEXPO.Models.Stands> stands, List<GRADEXPO.Models.PlanVisitFromjson.PlanVisit> planVisits)
         {
-            return PartialView(stands);
+            IEnumerable<Users.User> users = await new UsersService(new UsersRepository()).GetUsersAsync();
+            List<PlanUserVisits.PlanUserVisit> planUserVisits = new List<PlanUserVisits.PlanUserVisit>();
+            foreach (GRADEXPO.Models.PlanVisitFromjson.PlanVisit planVisit in planVisits)
+            {
+                IEnumerable<PlanUserVisits.PlanUserVisit> planUsers  = await new VisitRepository().getUserByPlanId(planVisit.planVisitId);
+                foreach(PlanUserVisits.PlanUserVisit item in planUsers)
+                {
+                    planUserVisits.Add(item);
+                }
+            }
+            StandInfoViewModel standInfoViewModel = new StandInfoViewModel()
+            {
+                Stands = stands,
+                planVisits = planVisits,
+                Users = users,
+                planUserVisits = planUserVisits
+            };
+            return PartialView(standInfoViewModel);
         }
         [Authorize]
         public async Task<ActionResult> AddStand(int expoId)

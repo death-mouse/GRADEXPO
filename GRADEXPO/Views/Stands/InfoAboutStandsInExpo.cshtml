@@ -1,5 +1,8 @@
-﻿@using GRADEXPO.Models;
-@model  List<Stands>
+﻿@using GRADEXPO.ViewModels;
+@using System.Linq;
+@using GRADEXPO.Models;
+
+@model StandInfoViewModel
 @{
     ViewBag.Title = "Информация о стендах на выставке ";
 }
@@ -12,16 +15,13 @@
             <th scope="col">Описание</th>
             <th scope="col">Поставщик</th>
             <th scope="col">Стаус</th>
-            <th scope="col">Дата встречи</th>
-            <th scope="col">Время встречи</th>
-            <th scope="col">Сотрудники</th>
             <th scope="col">Контакты поставщика</th>
-            <th scope="col">Комментарии</th>
+            <th scope="col">Плановые визиты</th>    
             <th></th>
         </tr>
     </thead>
     <tbody>
-        @foreach (var item in Model)
+        @foreach (var item in Model.Stands)
         {
         <tr class="table-active">
             <td>@Html.DisplayFor(modelItem => item.hall)</td>
@@ -35,11 +35,49 @@
                 <td></td>
             }
             <td>@Html.DisplayFor(modelItem => item.statusId)</td>
-            <td>????????????</td>
-            <td>????????????</td>
-            <td>????????????</td>
-            <td>????????????</td>
-            <td>????????????</td>
+            <td></td>
+            <td>
+
+                @{List<PlanVisitFromjson.PlanVisit> planVisits = Model.planVisits.Where(m => m.standId == item.standId).ToList();}
+                @if (planVisits.Count != 0)
+                {
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th scope="col">Дата встречи</th>
+                            <th scope="col">Время встречи</th>
+                            <th scope="col">Сотрудники</th>
+                            <th scope="col">Комментарий</th>
+                        </tr>
+                    </thead>
+                    @foreach (var itemPlanVisit in planVisits)
+                    {
+                        <tr>
+                            @{List<PlanUserVisits.PlanUserVisit> planUsers = Model.planUserVisits.Where(m => m.planVisitId == itemPlanVisit.planVisitId).ToList();}
+
+                                <td>
+                                    @itemPlanVisit.planvisitDateTime.ToString("dd.MM/yyyy")
+
+                                </td>
+                                <td>
+                                    @itemPlanVisit.planvisitDateTime.TimeOfDay
+                                </td>
+                                <td>
+                                    @foreach (PlanUserVisits.PlanUserVisit planUser in planUsers)
+                                    {
+                                        List<Users.User> user = Model.Users.Where(m => m.userId == planUser.userId).ToList();
+                                        @user[0].userName;
+                                        <br />
+                                    }
+                                </td>
+                                <td>
+                                    @itemPlanVisit.Comments
+                                </td>
+                        </tr>
+                    }
+                </table>
+                 }
+            </td>
             <td>
                 @Html.ActionLink("Изменить", "EditStand", "Stands", new { standId = item.standId, expoId = item.expoId }, new { @class = "btn btn-info btn-sm" })
                 <br />

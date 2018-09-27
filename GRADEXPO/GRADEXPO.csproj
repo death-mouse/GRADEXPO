@@ -241,6 +241,7 @@
     <Compile Include="Models\PlanUserVisits.cs" />
     <Compile Include="Services\IVendorContactsService.cs" />
     <Compile Include="Services\VendorContactsService.cs" />
+    <Compile Include="ViewModels\StandInfoViewModel.cs" />
     <Compile Include="ViewModels\VendorContactViewModel.cs" />
     <Compile Include="ViewModels\VendorViewModel.cs" />
     <Content Include="App_Code\PrintEventCalendar.cs" />
